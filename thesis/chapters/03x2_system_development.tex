@@ -1,0 +1,102 @@
+\section{Development of a system}
+In some theses, the focus is on developing a system.
+Usually, this is a software system, but it can include the development of a piece of hardware, too.
+In such a thesis, there is much more emphasis on the development process, than on the analysis of data.
+Therefore, the design process must be documented extensively in the thesis.
+
+Prof. Brügge wrote a book about software engineering, that might be applicable to this thesis \cite{bruegge2009object}.
+The recommended chapters in this template are derived from this book.
+
+\subsection{Requirements Analysis}
+	This chapter shall document the requirements of the system, that shall be developed.
+	These requirements shall later be used to justify the design decisions for the system's implementation
+
+	\subsubsection{Overview}
+		Provide a short overview about the purpose, scope, objectives and success criteria of the system that you like to develop.
+	\subsubsection{Current System}
+		If the system, that is developed in this thesis shall replace an existing system, the existing system shall be described here.
+		Make sure, that there are no repetitions from the \textit{State of the art} chapter.
+	\subsubsection{Proposed System}
+		If you leave out the section \textit{Current system}, you can rename this section to \textit{Requirements}.
+		\paragraph{Functional Requirements}
+			List and describe all functional requirements of your system.
+			Also mention requirements that you were not able to realize.
+		\paragraph{Nonfunctional Requirements}
+			List and describe all nonfunctional requirements of your system.
+			Also mention requirements that you were not able to realize.
+			Categorize them using the FURPS+ model described in \cite{bruegge2009object} without the category \textbf{functionality} that was already covered with the functional requirements.
+	\subsubsection{System Models}
+		This section includes important system models for the requirements analysis.
+		If you do not distinguish between visionary and demo scenarios, you can just add a \textit{Scenarios} section.
+		\paragraph{Visionary Scenarios}
+			Describe one or two visionary scenarios here, i.e. a scenario that would perfectly solve your problem, even if it might not be realizable.
+			Use the scenario description template from the ASE-Chair in form of a table.
+		\paragraph{Demo Scenarios}
+			Describe one or two demo scenario here, i.e. a scenario that you can implement and demonstrate until the end of your thesis.
+			Use the scenario description template from the ASE-Chair in form of a table.
+		\paragraph{Use Case Model}
+			This subsection should contain a UML Use Case Diagram including a description of the roles and their use cases.
+			You can use colors to indicate priorities.
+			Think about splitting the diagram into multiple ones if you have more than 10 use cases.
+			\textbf{Important:} Make sure to describe the most important use cases using the use case table template.
+			Also describe the rationale of the use case model, i.e. why you modeled it like you show it in the diagram.
+		\paragraph{Analysis Object Model}
+			This subsection should contain a UML Class Diagram showing the most important objects, attributes, methods and relations of your application domain including taxonomies using specification inheritance (see \cite{bruegge2009object}).
+			Do not insert objects, attributes or methods of the solution domain.
+			\textbf{Important:} Make sure to describe the analysis object model thoroughly in the text so that readers are able to understand the diagram.
+			Also write about the rationale how and why you modeled the concepts like this.
+		\paragraph{Dynamic Model}
+			This subsection should contain dynamic UML diagrams.
+			These can be UML state diagrams, UML communication diagrams or UML activity diagrams.
+			\textbf{Important:} Make sure to describe the diagram and its rationale in the text.
+			\textbf{Do not use UML sequence diagrams.}
+		\paragraph{User Interface}
+			Show mockups of the user interface of the software you develop and their connections/transitions.
+			You can also create a storyboard.
+			\textbf{Important:} Describe the mockups and their rationale in the text.
+
+\subsection{System Design}
+	In this chapter, you describe, how you map the concepts of the application domain to the solution domain.
+	Some sections are optional, if they do not apply to your problem.
+	\paragraph{Overview}
+		Provide a brief overview of the software architecture and references to other chapters (e.g. requirements analysis), references to existing systems, constraints impacting the software architecture.
+	\paragraph{Design Goals}
+		Derive design goals from your nonfunctional requirements, prioritize them (as they might conflict with each other) and describe the rationale of your prioritization.
+		Any trade-offs between design goals (e.g., build vs. buy, memory space vs. response time) and the rationale behind the specific solution should be described in this section
+	\paragraph{Subsystem Decomposition}
+		Describe the architecture of your system by decomposing it into subsystems and the services provided by each subsystem.
+		Use UML class diagrams including packages/components for each subsystem.
+	\paragraph{Hardware Software Mapping}
+		This section describes, how the subsystems are mapped onto existing hardware and software components.
+		The description is accompanied by a UML deployment diagram.
+		The existing components are often off-the-shelf components.
+		If the components are distributed on different nodes, the network infrastructure and the protocols are also described.
+	\paragraph{Persistent Data Management}
+		An optional section that describes, which and how data is saved over the lifetime of the system.
+		Describe the approach for persisting data here and show a UML class diagram of how the entity objects are mapped to persistent storage.
+		Also, justify the selected storage technology and data model.
+	\paragraph{Access Control}
+		An optional section describing the access control and security issues based on the nonfunctional requirements of the system.
+		It also describes the implementation of the access matrix based on capabilities or access control lists, the selection of authentication mechanisms and the use of encryption algorithms.
+	\paragraph{Global Software Control}
+		An optional section describing the control flow of the system, in particular, whether a monolithic, event-driven control flow or concurrent processes have been selected, how requests are initiated and specific synchronization issues.
+	\paragraph{Boundary Conditions}
+		An optional section describing the use cases how to start up the separate components of the system, how to shut them down, and what to do if a component or the system fails.
+
+\subsection{Case Study/Evaluation}
+	If you did an evaluation/case study, describe it here.
+	\paragraph{Design}
+		Describe the design/methodology of the evaluation and why you did it like that.
+		E.g. what kind of evaluation have you done (e.g. questionnaire, personal interviews, simulation, quantitative analysis of metrics, what kind of participants, what kind of questions, what was the procedure?
+	\paragraph{Objectives}
+		Derive concrete objectives/hypotheses for this evaluation from the general ones in the introduction.
+	\paragraph{Results}
+		Summarize the most interesting results of your evaluation (without interpretation).
+		Additional results can be put into the appendix.
+	\paragraph{Findings}
+		Interpret the results and conclude interesting findings.
+	\paragraph{Discussion}
+		Discuss the findings in more detail and also review possible disadvantages that you found.
+	\paragraph{Limitations}
+		Describe limitations and threats to validity of your evaluation, e.g. reliability, generalizability, selection bias, researcher bias.
+
