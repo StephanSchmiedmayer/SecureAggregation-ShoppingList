@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4128C8266826AD00EB2CF8 /* IrregularGradient */; };
+		0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */; };
 		0B441933265A64C600100106 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441932265A64C600100106 /* ListView.swift */; };
 		0B441936265A64F500100106 /* ListsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441935265A64F500100106 /* ListsOverview.swift */; };
 		0B441938265A650100100106 /* EvaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441937265A650100100106 /* EvaluationView.swift */; };
@@ -23,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+CustomEnumerated.swift"; sourceTree = "<group>"; };
 		0B441932265A64C600100106 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0B441935265A64F500100106 /* ListsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsOverview.swift; sourceTree = "<group>"; };
 		0B441937265A650100100106 /* EvaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationView.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +92,7 @@
 		0B441941265A818500100106 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -152,6 +157,9 @@
 			dependencies = (
 			);
 			name = shoppingList;
+			packageProductDependencies = (
+				0B4128C8266826AD00EB2CF8 /* IrregularGradient */,
+			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
 			productType = "com.apple.product-type.application";
@@ -179,6 +187,9 @@
 				Base,
 			);
 			mainGroup = 0BAE70AB2656C7D800135D3A;
+			packageReferences = (
+				0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
+			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -211,6 +222,7 @@
 				0B44193C265A660D00100106 /* ShoppingLists.swift in Sources */,
 				0BAE70C42656C7DC00135D3A /* shoppingList.xcdatamodeld in Sources */,
 				0B44193E265A6D0000100106 /* ShoppingListsViewModel.swift in Sources */,
+				0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */,
 				0B441933265A64C600100106 /* ListView.swift in Sources */,
 				0BAE70BA2656C7D800135D3A /* ContentView.swift in Sources */,
 				0B441936265A64F500100106 /* ListsOverview.swift in Sources */,
@@ -404,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joogps/IrregularGradient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B4128C8266826AD00EB2CF8 /* IrregularGradient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
+			productName = IrregularGradient;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0BAE70C22656C7DC00135D3A /* shoppingList.xcdatamodeld */ = {

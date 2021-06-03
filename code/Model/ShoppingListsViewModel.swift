@@ -8,25 +8,24 @@
 import Foundation
 
 class ShoppingListsViewModel: ObservableObject {
-    @Published public private(set) var lists: [ShoppingList]
+    @Published var lists: [ShoppingList]
     
     init() {
         lists = [
-            ShoppingList(name: "Nahrungsmittel", elements: [
+            ShoppingList(name: "Rewe", elements: [
+                ShoppingListElement(done: false, text: "Tomaten 25g"),
+                ShoppingListElement(done: false, text: "Bier"),
+                ShoppingListElement(done: true, text: "Eier"),
+                ShoppingListElement(done: true, text: "Philadelphia"),
+                ShoppingListElement(done: true, text: "Appenzeller"),
+                ShoppingListElement(done: true, text: "Milch"),
+
+            ]),
+            ShoppingList(name: "Kaufland", elements: [
                 ShoppingListElement(done: false, text: "Eier"),
                 ShoppingListElement(done: false, text: "Bananen"),
                 ShoppingListElement(done: true, text: "Milch"),
             ]),
-            ShoppingList(name: "GanzWildeListeHuiuiuiuiui", elements: [
-                ShoppingListElement(done: false, text: "Eier"),
-                ShoppingListElement(done: false, text: "Bananen"),
-                ShoppingListElement(done: true, text: "Milch"),
-            ]),
-            ShoppingList(name: "Nope", elements: [
-                ShoppingListElement(done: false, text: "Eier"),
-                ShoppingListElement(done: false, text: "Bananen"),
-                ShoppingListElement(done: true, text: "Milch"),
-            ])
         ]
     }
     

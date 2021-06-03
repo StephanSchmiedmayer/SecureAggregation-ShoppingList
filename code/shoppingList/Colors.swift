@@ -12,4 +12,5 @@ extension Color {
     static let secondaryTextColor = Color("SecondaryTextColor")
     static let foregroundColor = Color("ForegroundColor")
     static let backgroundColor = Color("BackgroundColor")
+    static let backgroundAccentColor = Color("BackgroundAccentColor")
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShoppingList: Identifiable, Equatable {
+struct ShoppingList: Identifiable {
     let id = UUID()
     var name: String
     var elements: [ShoppingListElement]
@@ -34,7 +34,13 @@ struct ShoppingList: Identifiable, Equatable {
     }
 }
 
-struct ShoppingListElement: Identifiable, Equatable {
+extension ShoppingList: Equatable {
+    static func == (lhs: ShoppingList, rhs: ShoppingList) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+struct ShoppingListElement: Identifiable {
     let id = UUID()
     var done: Bool = false
     var text: String
@@ -51,5 +57,11 @@ struct ShoppingListElement: Identifiable, Equatable {
      */
     mutating func changeText(to newText: String) {
         self.text = newText
+    }
+}
+
+extension ShoppingListElement: Equatable {
+    static func == (lhs: ShoppingListElement, rhs: ShoppingListElement) -> Bool {
+        lhs.id == rhs.id
     }
 }
