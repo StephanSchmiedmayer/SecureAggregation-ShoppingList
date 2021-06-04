@@ -9,18 +9,9 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @StateObject var shoppingListsViewModel = ShoppingListsViewModel()
     
     var body: some View {
-        NavigationView {
-            ListsOverview()
-                .navigationTitle("Your shopping lists")
-                .environmentObject(shoppingListsViewModel)
-        }
-    }
-    
-    init() {
-        print("init ContentView")
+        ListsOverview()
     }
 }
 

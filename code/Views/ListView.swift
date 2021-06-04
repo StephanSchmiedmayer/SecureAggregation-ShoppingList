@@ -9,8 +9,12 @@ import SwiftUI
 import IrregularGradient
 
 struct ListView: View {
-    @Binding var list: ShoppingList
     @EnvironmentObject var viewModel: ShoppingListsViewModel
+    var list: ShoppingList
+    
+    var listIndex: Int {
+        viewModel.lists.firstIndex(where: { $0.id == list.id })!
+    }
 //    @State var animateBackground = true
     
 //    init(list: ShoppingList) {
@@ -26,13 +30,13 @@ struct ListView: View {
 //                              speed: 10, shouldAnimate: $animateBackground)
 //                .ignoresSafeArea()
             List {
-                forEach(data: list.elements) { index, element in
+                ForEach(list.elements) { element in
 //                ForEach(list.elements) { element in
                     HStack {
                         Image(systemName: element.done ? "largecircle.fill.circle" : "circle")
                             .foregroundColor(element.done ? .gray : .accentColor)
                             .onTapGesture {
-                                list.elements[index].toggleDone()
+                                viewModel.toggleDone(of: element, inList: list)
                             }
                         Text(element.text)
                             .foregroundColor(element.done ? .gray : nil)
@@ -59,7 +63,7 @@ struct ListView_Previews: PreviewProvider {
 
         var body: some View {
             NavigationView {
-                ListView(list: $viewModel.lists[0])
+                ListView(list: viewModel.lists[0])
                     .environmentObject(viewModel)
             }
         }

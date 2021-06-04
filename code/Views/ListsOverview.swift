@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct ListsOverview: View {
-    @EnvironmentObject var viewModel: ShoppingListsViewModel
+    @StateObject var viewModel: ShoppingListsViewModel = ShoppingListsViewModel()
     
     var body: some View {
-        ScrollView {
-            forEach(data: viewModel.lists) { index, list in
-                NavigationLink(destination: ListView(list: $viewModel.lists[index])) {
-                    ListOverviewCard(list: list)
+        NavigationView {
+            List {
+                ForEach(viewModel.lists, id: \.id) { list in
+                    NavigationLink(destination: ListView(list: list)) {
+                        ListOverviewCard(list: list)
+                    }
                 }
             }
-            Spacer()
+            .navigationTitle("Your shopping lists")
+            .listStyle(DefaultListStyle())
         }
         .background(Color.backgroundColor.ignoresSafeArea())
+        .environmentObject(viewModel)
     }
 }
 
@@ -47,6 +51,7 @@ struct ListOverviewCard: View {
             }
             .padding(.top, 5)
             Text("\(list.id)")
+            Text("\(list.elements[0].done.description)")
         }
         .padding()
         .background(Color.foregroundColor)
