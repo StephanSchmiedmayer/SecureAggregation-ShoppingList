@@ -8,7 +8,7 @@
 import Foundation
 
 class ShoppingListsViewModel: ObservableObject {
-    @Published var lists: [ShoppingList]
+    @Published public private(set) var lists: [ShoppingList]
     
     init() {
         lists = [
@@ -18,7 +18,7 @@ class ShoppingListsViewModel: ObservableObject {
                 ShoppingListElement(done: true, text: "Eier"),
                 ShoppingListElement(done: true, text: "Philadelphia"),
                 ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Milch"),
+                ShoppingListElement(done: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
 
             ]),
             ShoppingList(name: "Kaufland", elements: [
@@ -29,6 +29,13 @@ class ShoppingListsViewModel: ObservableObject {
         ]
     }
     
+    // TODO: make thread-safe
+    /**
+     Returns list with the specified id
+     */
+    func list(withID listID: ShoppingList.ID) -> ShoppingList? {
+        return lists.first(where: { $0.id == listID })
+    }
     /**
      Adds a `ShoppingList` to the end of `lists`
      */
@@ -43,24 +50,32 @@ class ShoppingListsViewModel: ObservableObject {
         lists = lists.filter{$0.id != list.id}
     }
     
+    func renameList(_ list: ShoppingList, to newName: String) {
+        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
+        lists[listIndex].changeName(to: newName)
+    }
+    
     /**
      Toggles done of the `ShoppingListElement`in the given `ShoppingList`
      */
     func toggleDone(of element: ShoppingListElement, inList list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(of: list),
-              let elementIndex = lists[listIndex].elements.firstIndex(of: element) else {
-            return
-        }
+        guard let listIndex = lists.firstIndex(matchingIdOf: list),
+              let elementIndex = lists[listIndex].elements.firstIndex(matchingIdOf: element) else { return }
         lists[listIndex].elements[elementIndex].toggleDone()
+    }
+    
+    /**
+     Adds a new `ShoppingListElement` with the given name to the specified `ShoppingList`
+     */
+    func addElement(_ elementName: String, toList list: ShoppingList) {
+        addElement(ShoppingListElement(done: false, text: elementName), toList: list)
     }
     
     /**
      Adds the `ShoppingListElement` to the specified `ShoppingList`
      */
     func addElement(_ element: ShoppingListElement, toList list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(of: list) else {
-            return
-        }
+        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
         lists[listIndex].addElement(element)
     }
 }

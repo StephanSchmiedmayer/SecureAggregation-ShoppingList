@@ -12,53 +12,58 @@ struct ListsOverview: View {
     
     var body: some View {
         NavigationView {
-            List {
+            ScrollView {
                 ForEach(viewModel.lists, id: \.id) { list in
-                    NavigationLink(destination: ListView(list: list)) {
-                        ListOverviewCard(list: list)
+                    NavigationLink(destination: ListView(listID: list.id)) {
+                        ListOverviewCard(listID: list.id)
                     }
                 }
             }
             .navigationTitle("Your shopping lists")
-            .listStyle(DefaultListStyle())
+            .background(Color.backgroundColor.ignoresSafeArea())
         }
-        .background(Color.backgroundColor.ignoresSafeArea())
         .environmentObject(viewModel)
     }
 }
 
 struct ListOverviewCard: View {
-    let list: ShoppingList
+    @EnvironmentObject var viewModel: ShoppingListsViewModel
+    let listID: ShoppingList.ID
+    
+    var optionalList: ShoppingList? {
+        viewModel.list(withID: listID)
+    }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(list.name)
-                    .font(.system(size: 20))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.accentColor)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 20))
-                    .foregroundColor(.secondary)
+        if let list = optionalList {
+            VStack {
+                HStack {
+                    Text(list.name)
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.accentColor)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 20))
+                        .foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("\(list.elements.compactMap{ $0.text }.joined(separator: ", "))")
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
+                        .foregroundColor(.secondaryTextColor)
+                    Spacer()
+                }
+                .padding(.top, 5)
             }
-            HStack {
-                Text("\(list.elements.compactMap{ $0.text }.joined(separator: ", "))")
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
-                    .foregroundColor(.secondaryTextColor)
-                Spacer()
-            }
-            .padding(.top, 5)
-            Text("\(list.id)")
-            Text("\(list.elements[0].done.description)")
+            .padding()
+            .background(Color.foregroundColor)
+            .cornerRadius(Constants.cornerRadius)
+            .padding(.horizontal)
+            .padding(.vertical, 5)
+        } else {
+            Text("List deleted")
         }
-        .padding()
-        .background(Color.foregroundColor)
-        .cornerRadius(Constants.cornerRadius)
-        .padding(.horizontal)
-        .padding(.vertical, 5)
-
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3E467B266AA2900007BDF7 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E467A266AA2900007BDF7 /* Array+Identifiable.swift */; };
+		0B3E467F266BB7690007BDF7 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E467E266BB7690007BDF7 /* CustomDivider.swift */; };
 		0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4128C8266826AD00EB2CF8 /* IrregularGradient */; };
 		0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */; };
 		0B441933265A64C600100106 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441932265A64C600100106 /* ListView.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B3E467A266AA2900007BDF7 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
+		0B3E467E266BB7690007BDF7 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+CustomEnumerated.swift"; sourceTree = "<group>"; };
 		0B441932265A64C600100106 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0B441935265A64F500100106 /* ListsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsOverview.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */,
+				0B3E467A266AA2900007BDF7 /* Array+Identifiable.swift */,
+				0B3E467E266BB7690007BDF7 /* CustomDivider.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				0B44193C265A660D00100106 /* ShoppingLists.swift in Sources */,
 				0BAE70C42656C7DC00135D3A /* shoppingList.xcdatamodeld in Sources */,
 				0B44193E265A6D0000100106 /* ShoppingListsViewModel.swift in Sources */,
+				0B3E467F266BB7690007BDF7 /* CustomDivider.swift in Sources */,
+				0B3E467B266AA2900007BDF7 /* Array+Identifiable.swift in Sources */,
 				0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */,
 				0B441933265A64C600100106 /* ListView.swift in Sources */,
 				0BAE70BA2656C7D800135D3A /* ContentView.swift in Sources */,
