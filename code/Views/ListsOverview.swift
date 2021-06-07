@@ -36,17 +36,8 @@ struct ListOverviewCard: View {
     
     var body: some View {
         if let list = optionalList {
-            VStack {
-                HStack {
-                    Text(list.name)
-                        .font(.system(size: 20))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.accentColor)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 20))
-                        .foregroundColor(.secondary)
-                }
+            CardView(title: list.name,
+                     isNavigationLink: true) {
                 HStack {
                     Text("\(list.elements.compactMap{ $0.text }.joined(separator: ", "))")
                         .multilineTextAlignment(.leading)
@@ -54,13 +45,7 @@ struct ListOverviewCard: View {
                         .foregroundColor(.secondaryTextColor)
                     Spacer()
                 }
-                .padding(.top, 5)
             }
-            .padding()
-            .background(Color.foregroundColor)
-            .cornerRadius(Constants.cornerRadius)
-            .padding(.horizontal)
-            .padding(.vertical, 5)
         } else {
             Text("List deleted")
         }
