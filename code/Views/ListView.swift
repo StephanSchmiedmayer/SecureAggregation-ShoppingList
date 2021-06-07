@@ -17,36 +17,47 @@ struct ListView: View {
         viewModel.list(withID: listID)
     }
     
-    //    @State private var animateBackground: Bool = false
+//    @State private var animateBackground: Bool = false
     
     @State private var elementResponder: Bool? = false
     @State private var addElementText = ""
     
     init(listID: ShoppingList.ID) {
-        UITableView.appearance().backgroundColor = .clear // For tableView
-        UITableViewCell.appearance().backgroundColor = .clear // For tableViewCell
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
         self.listID = listID
-    }
-    
-    private var background: some View {
-        Color.backgroundColor.opacity(0.5)
     }
     
     var body: some View {
         ZStack {
-            //            IrregularGradient(colors: [.blobColor1, .blobColor2],
-            //                              background: LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]), startPoint: .top, endPoint: .bottom),
-            //                              speed: 10, shouldAnimate: $animateBackground)
-            //                .ignoresSafeArea()
+//            IrregularGradient(colors: [.blobColor1, .blobColor2],
+//                              background: LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]), startPoint: .top, endPoint: .bottom),
+//                              speed: 10, shouldAnimate: $animateBackground)
+//                .ignoresSafeArea()
             LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             if let list = optionalList {
-                List {
-                    ForEach(list.elements) { element in
-                        VStack(spacing: 0) {
-                            ListElementView(list: list, element: element)
+                VStack(spacing: 0) {
+                    List {
+                        ForEach(list.elements) { element in
+                            VStack(spacing: 0) {
+                                ListElementView(list: list, element: element)
+                            }
                         }
+                        .listRowBackground(Color.listBackgroundColor)
+//                        Button(action: { animateBackground.toggle() }, label: {
+//                            Text(animateBackground ? "Animate" : "Static")
+//                        })
+//                        .listRowBackground(background)
+                        Button(action: { viewModel.removeList(list)}, label: {
+                            Text("Delete List")
+                        })
+                        .listRowBackground(Color.listBackgroundColor)
                     }
+                    .listStyle(SidebarListStyle())
+                    .navigationTitle(list.name)
+                    .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                    
                     HStack {
                         TextField("Add new element", text: $addElementText, onCommit:  {
                             addElement(toList: list)
@@ -62,17 +73,13 @@ struct ListView: View {
                         })
                         .disabled(addElementText.isEmpty)
                     }
-                    .listRowBackground(background)
-                    //                        Button(action: { animateBackground.toggle() }, label: {
-                    //                            Text(animateBackground ? "Animate" : "Static")
-                    //                        })
-                    Button(action: { viewModel.removeList(list)}, label: {
-                        Text("Delete List")
-                    })
+                    .padding()
+                    .background(Color.listBackgroundColor.ignoresSafeArea(edges: .bottom))
+                    .cornerRadius(Constant.cornerRadius)
+                    .shadow(radius: 5)
+                    .padding(5)
+                    .background(Color.clear)
                 }
-                .listStyle(SidebarListStyle())
-                .navigationTitle(list.name)
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
             }
             else {
                 Text("List has been deleted")
@@ -109,8 +116,10 @@ struct ListElementView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper()
-            .preferredColorScheme(.dark)
+        ForEach(ColorScheme.allCases, id: \.self) { scheme in
+            PreviewWrapper()
+                .preferredColorScheme(scheme)
+        }
     }
     
     struct PreviewWrapper: View {

@@ -16,6 +16,7 @@ extension Color {
     static let foregroundColor = Color("ForegroundColor")
     static let backgroundColor = Color("BackgroundColor")
     static let backgroundAccentColor = Color("BackgroundAccentColor")
+    static let listBackgroundColor = Color("ListBackgroundColor")
     
     // MARK: Gradients colors
     static let gradientStartColor = Color("GradientStart")
