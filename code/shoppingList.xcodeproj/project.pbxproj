@@ -20,6 +20,11 @@
 		0B441943265A9F4900100106 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441942265A9F4900100106 /* Constant.swift */; };
 		0BA94B34266E95AF00F308FF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B33266E95AF00F308FF /* CardView.swift */; };
 		0BA94B37266E9AC600F308FF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B36266E9AC600F308FF /* Fonts.swift */; };
+		0BA94B39266EB5D100F308FF /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B38266EB5D100F308FF /* VisualEffectView.swift */; };
+		0BA94B3B266EB79500F308FF /* ListElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B3A266EB79500F308FF /* ListElementView.swift */; };
+		0BA94B3D266EB8A600F308FF /* BlurredBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B3C266EB8A600F308FF /* BlurredBackground.swift */; };
+		0BA94B3F266EBA1200F308FF /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B3E266EBA1200F308FF /* BackgroundView.swift */; };
+		0BA94B41266EC01500F308FF /* AddTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94B40266EC01500F308FF /* AddTextFieldView.swift */; };
 		0BAE70B82656C7D800135D3A /* shoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70B72656C7D800135D3A /* shoppingListApp.swift */; };
 		0BAE70BA2656C7D800135D3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70B92656C7D800135D3A /* ContentView.swift */; };
 		0BAE70BC2656C7DC00135D3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE70BB2656C7DC00135D3A /* Assets.xcassets */; };
@@ -41,6 +46,11 @@
 		0B441942265A9F4900100106 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		0BA94B33266E95AF00F308FF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0BA94B36266E9AC600F308FF /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		0BA94B38266EB5D100F308FF /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		0BA94B3A266EB79500F308FF /* ListElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListElementView.swift; sourceTree = "<group>"; };
+		0BA94B3C266EB8A600F308FF /* BlurredBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredBackground.swift; sourceTree = "<group>"; };
+		0BA94B3E266EBA1200F308FF /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		0BA94B40266EC01500F308FF /* AddTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFieldView.swift; sourceTree = "<group>"; };
 		0BAE70B42656C7D800135D3A /* shoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAE70B72656C7D800135D3A /* shoppingListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shoppingListApp.swift; sourceTree = "<group>"; };
 		0BAE70B92656C7D800135D3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +79,7 @@
 				0BAE70B92656C7D800135D3A /* ContentView.swift */,
 				0B441935265A64F500100106 /* ListsOverview.swift */,
 				0B441932265A64C600100106 /* ListView.swift */,
+				0BA94B3A266EB79500F308FF /* ListElementView.swift */,
 				0B441937265A650100100106 /* EvaluationView.swift */,
 			);
 			path = Views;
@@ -114,6 +125,10 @@
 			children = (
 				0B3E467E266BB7690007BDF7 /* CustomDivider.swift */,
 				0BA94B33266E95AF00F308FF /* CardView.swift */,
+				0BA94B38266EB5D100F308FF /* VisualEffectView.swift */,
+				0BA94B3C266EB8A600F308FF /* BlurredBackground.swift */,
+				0BA94B3E266EBA1200F308FF /* BackgroundView.swift */,
+				0BA94B40266EC01500F308FF /* AddTextFieldView.swift */,
 			);
 			path = "Reusable Views";
 			sourceTree = "<group>";
@@ -246,12 +261,17 @@
 				0B44193E265A6D0000100106 /* ShoppingListsViewModel.swift in Sources */,
 				0B3E467F266BB7690007BDF7 /* CustomDivider.swift in Sources */,
 				0B3E467B266AA2900007BDF7 /* Array+Identifiable.swift in Sources */,
+				0BA94B41266EC01500F308FF /* AddTextFieldView.swift in Sources */,
+				0BA94B3F266EBA1200F308FF /* BackgroundView.swift in Sources */,
 				0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */,
 				0B441933265A64C600100106 /* ListView.swift in Sources */,
 				0BAE70BA2656C7D800135D3A /* ContentView.swift in Sources */,
 				0B441936265A64F500100106 /* ListsOverview.swift in Sources */,
 				0BAE70B82656C7D800135D3A /* shoppingListApp.swift in Sources */,
+				0BA94B39266EB5D100F308FF /* VisualEffectView.swift in Sources */,
+				0BA94B3D266EB8A600F308FF /* BlurredBackground.swift in Sources */,
 				0B441938265A650100100106 /* EvaluationView.swift in Sources */,
+				0BA94B3B266EB79500F308FF /* ListElementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

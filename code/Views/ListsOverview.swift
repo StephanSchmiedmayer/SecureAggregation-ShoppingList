@@ -18,9 +18,15 @@ struct ListsOverview: View {
                         ListOverviewCard(listID: list.id)
                     }
                 }
+                // TODO: anders gestalten, sieht aus wie Liste
+                CardView(title: "Add new List", isNavigationLink: false) {
+                    AddTextFieldView(textFieldDefaultText: "List Name") { input in
+                        viewModel.addList(ShoppingList(name: input, elements: []))
+                    }
+                }
             }
             .navigationTitle("Your shopping lists")
-            .background(Color.backgroundColor.ignoresSafeArea())
+            .background(BackgroundView())
         }
         .environmentObject(viewModel)
     }
