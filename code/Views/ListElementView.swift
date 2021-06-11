@@ -14,15 +14,22 @@ struct ListElementView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: element.done ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(element.done ? .gray : .accentColor)
+            Image(systemName: element.checked ? "checkmark.circle.fill" : "circle")
+                .foregroundColor(element.checked ? .gray : .accentColor)
                 .font(.system(size: 20))
             Text(element.text)
-                .foregroundColor(element.done ? .gray : nil)
+                .foregroundColor(element.checked ? .gray : nil)
             Spacer()
         }
+        .padding(.horizontal)
+        .padding(.vertical, 10)
+        .background(BlurredBackground())
+        .contentShape(Rectangle())
         .onTapGesture {
-            viewModel.toggleDone(of: element, inList: list)
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            withAnimation {
+                viewModel.toggleChecked(of: element, inList: list)
+            }
         }
     }
 }
@@ -36,7 +43,7 @@ struct ListElementView_Previews: PreviewProvider {
         @StateObject var viewModel = ShoppingListsViewModel()
         
         var body: some View {
-            ListElementView(list: viewModel.lists[0], element: viewModel.lists[0].elements[0])
+            ListElementView(list: viewModel.lists[0], element: viewModel.lists[0].checkedElements[0])
                 .environmentObject(viewModel)
         }
     }

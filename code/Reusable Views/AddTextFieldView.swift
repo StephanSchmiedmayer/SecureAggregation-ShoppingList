@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddTextFieldView: View {
     let textFieldDefaultText: String
+    let onStartEditing: () -> ()
     let processFinishedInput: (String) -> ()
     @State private var input = ""
     // TODO: Add button zu klein
@@ -16,17 +17,24 @@ struct AddTextFieldView: View {
     /**
      - Parameters:
         - textFieldDefaultText: Default Text to show when the TextField is empty
+        - onStartEditing: Function called when the user starts writing into the TextField
         - processFinishedInput: Function taking the String of the Textview (as inout) to process. Gets called when the users wants to add the Element. TextFieldInput gets automatically reset after calling this function.
      */
-    init(textFieldDefaultText: String, processFinishedInput: @escaping (String) -> ()) {
+    init(textFieldDefaultText: String,
+         onStartEditing: @escaping () -> () =  {},
+         processFinishedInput: @escaping (String) -> ()) {
         self.textFieldDefaultText = textFieldDefaultText
+        self.onStartEditing = onStartEditing
         self.processFinishedInput = processFinishedInput
     }
     
     var body: some View {
         HStack {
-            TextField(textFieldDefaultText, text: $input, onCommit: callProcessFinishedInput)
-            .frame(maxWidth: .infinity)
+            TextField(textFieldDefaultText,
+                      text: $input,
+                      onEditingChanged: { if $0 { onStartEditing() } },
+                      onCommit: callProcessFinishedInput)
+                .frame(maxWidth: .infinity)
             Button(action: callProcessFinishedInput, label: {
                 Text("Add")
                     .bold()
@@ -43,6 +51,7 @@ struct AddTextFieldView: View {
     
     func callProcessFinishedInput() {
         guard input != "" else { return }
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         processFinishedInput(input)
         input = ""
     }

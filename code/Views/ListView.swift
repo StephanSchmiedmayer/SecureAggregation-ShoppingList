@@ -10,6 +10,7 @@ import IrregularGradient
 
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
+    /// ID of the list to show
     let listID: ShoppingList.ID
     
     /// List corresponding to listID. Optional because otherwise when the list gets deleted while this view is shown an IndexOutOfBounds Error is thrown
@@ -19,7 +20,6 @@ struct ListView: View {
     
     @State private var addElementText = ""
     
-    
     init(listID: ShoppingList.ID) {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
@@ -28,29 +28,55 @@ struct ListView: View {
     
     var body: some View {
         if let list = optionalList {
-            List {
-                ForEach(list.elements) { element in
-                    VStack(spacing: 0) {
-                        ListElementView(list: list, element: element)
+            ScrollView {
+                VStack {
+                    VStack(spacing: 1) {
+                        ForEach(list.notCheckedElements) { element in
+                            ListElementView(list: list, element: element)
+                        }
+                        if list.showCheckedElements {
+                            ForEach(list.checkedElements) { element in
+                                ListElementView(list: list, element: element)
+                            }
+                        }
                     }
+                    .cornerRadius(Constant.cornerRadius)
+                    .padding(.horizontal)
+                    .padding(.top, 5)
+                    AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
+                        .hidden()
+                        .id(-1)
                 }
-                .listRowBackground(BlurredBackground())
-                Button(action: { viewModel.removeList(list)}, label: {
-                    Text("Delete List")
-                })
-                .listRowBackground(BlurredBackground())
             }
-            .listStyle(SidebarListStyle())
-//            .padding(.bottom, 25) // TODO: bessere lösung damit kein Element verdeckt wird bei einer langen Liste ganz unten
-            .overlay(AddTextFieldView(textFieldDefaultText: "Add new element") { input in
-                viewModel.addElement(input, toList: list)
+            .overlay(AddTextFieldView(textFieldDefaultText: "Add new element"){ input in
+                withAnimation {
+                    viewModel.addElement(input, toList: list)
+                }
             }, alignment: .bottom)
+            .navigationBarItems(trailing: settings)
             .background(BackgroundView())
-            .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .navigationTitle(list.name)
         }
         else {
             Text("List has been deleted")
+        }
+    }
+    
+    private var settings: some View {
+        Menu {
+            if let list = optionalList {
+                Button {
+                    withAnimation {
+                        viewModel.toggleShowCheckedElements(of: list)
+                    }
+                } label: {
+                    Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
+                          systemImage: list.showCheckedElements ? "eye.slash" : "eye")
+                }
+            }
+        }
+        label: {
+            Image(systemName: "ellipsis.circle")
         }
     }
     

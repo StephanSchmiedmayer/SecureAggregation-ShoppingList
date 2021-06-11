@@ -10,8 +10,17 @@ import Foundation
 struct ShoppingList: Identifiable, Equatable {
     let id = UUID()
     var name: String
-    var elements: [ShoppingListElement]
+    var showCheckedElements: Bool = false
+    public private(set) var notCheckedElements: [ShoppingListElement]
+    public private(set) var checkedElements: [ShoppingListElement]
     
+    init(name: String, elements: [ShoppingListElement]) {
+        self.name = name
+        notCheckedElements = elements.filter{ !$0.checked }
+        checkedElements = elements.filter { $0.checked }
+    }
+    
+    // MARK:- mutating functions
     /**
      Changes the name of the `ShoppingList`
      */
@@ -23,34 +32,45 @@ struct ShoppingList: Identifiable, Equatable {
      Adds the element to the end of `elements`
      */
     mutating func addElement(_ element: ShoppingListElement) {
-        elements.append(element)
+        if element.checked {
+            checkedElements.append(element)
+        } else {
+            notCheckedElements.append(element)
+        }
     }
     
     /**
      Removes all `ShoppingListElement`s with the same id
      */
     mutating func removeElement(_ element: ShoppingListElement) {
-        elements = elements.filter { $0.id != element.id}
+        if checkedElements.contains(where: { $0.id == element.id }) {
+            checkedElements = checkedElements.filter { $0.id != element.id }
+        } else {
+            notCheckedElements = notCheckedElements.filter { $0.id != element.id }
+        }
+    }
+    
+    /**
+     Toggles checked of the `ShoppingListElement` and updates notCheckedElements and checkedElements accordingly
+     */
+    mutating func toggleCheckedOfElement(_ element: ShoppingListElement) {
+        if let checkedElementsIndex = checkedElements.firstIndex(matchingIdOf: element) {
+            var elementToToggle = checkedElements.remove(at: checkedElementsIndex)
+            elementToToggle.toggleChecked()
+            notCheckedElements.append(elementToToggle)
+        } else if let notCheckedElementsIndex = notCheckedElements.firstIndex(matchingIdOf: element) {
+            var elementToToggle = notCheckedElements.remove(at: notCheckedElementsIndex)
+            elementToToggle.toggleChecked()
+            checkedElements.insert(elementToToggle, at: 0)
+        }
     }
 }
 
-//extension ShoppingList: Equatable {
-//    static func == (lhs: ShoppingList, rhs: ShoppingList) -> Bool {
-//        lhs.id == rhs.id
-//    }
-//}
-
 struct ShoppingListElement: Identifiable, Equatable {
     let id = UUID()
-    var done: Bool = false
+    // TODO: delete checked from shoppingListElement to remove the possibility of undefined states
+    var checked: Bool = false
     var text: String
-    
-    /**
-     Toggles `done`
-     */
-    mutating func toggleDone() {
-        self.done.toggle()
-    }
     
     /**
      Changes the text of the `ShoppingListElement`
@@ -58,10 +78,8 @@ struct ShoppingListElement: Identifiable, Equatable {
     mutating func changeText(to newText: String) {
         self.text = newText
     }
+    
+    mutating func toggleChecked() {
+        self.checked.toggle()
+    }
 }
-
-//extension ShoppingListElement: Equatable {
-//    static func == (lhs: ShoppingListElement, rhs: ShoppingListElement) -> Bool {
-//        lhs.id == rhs.id
-//    }
-//}

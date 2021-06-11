@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ListsOverview: View {
-    @StateObject var viewModel: ShoppingListsViewModel = ShoppingListsViewModel()
+    @StateObject private var viewModel: ShoppingListsViewModel = ShoppingListsViewModel()
+//    @StateObject private var navigationTitleBarBug: Bool = false
+    
+    init() {
+        UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
+    }
     
     var body: some View {
         NavigationView {
@@ -18,15 +23,17 @@ struct ListsOverview: View {
                         ListOverviewCard(listID: list.id)
                     }
                 }
-                // TODO: anders gestalten, sieht aus wie Liste
-                CardView(title: "Add new List", isNavigationLink: false) {
-                    AddTextFieldView(textFieldDefaultText: "List Name") { input in
-                        viewModel.addList(ShoppingList(name: input, elements: []))
-                    }
-                }
+                AddTextFieldView(textFieldDefaultText: "", processFinishedInput: {_ in })
+                    .hidden()
             }
+            .overlay(AddTextFieldView(textFieldDefaultText: "List Name") { input in
+                viewModel.addList(ShoppingList(name: input, elements: []))
+            }, alignment: .bottom)
             .navigationTitle("Your shopping lists")
+            .navigationBarTitleDisplayMode(.large)
+            // TODO: Bug: nach TextField geöffnet spackt NavigationTitle rum wenn man so den background setzt (auch ListView)
             .background(BackgroundView())
+            .navigationViewStyle(StackNavigationViewStyle())
         }
         .environmentObject(viewModel)
     }
@@ -44,12 +51,14 @@ struct ListOverviewCard: View {
         if let list = optionalList {
             CardView(title: list.name,
                      isNavigationLink: true) {
-                HStack {
-                    Text("\(list.elements.compactMap{ $0.text }.joined(separator: ", "))")
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(1)
-                        .foregroundColor(.secondaryTextColor)
-                    Spacer()
+                if !list.notCheckedElements.isEmpty {
+                    HStack {
+                        Text("\(list.notCheckedElements.compactMap{ $0.text }.joined(separator: ", "))")
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                            .foregroundColor(.secondaryTextColor)
+                        Spacer()
+                    }
                 }
             }
         } else {

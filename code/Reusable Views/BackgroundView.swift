@@ -18,7 +18,16 @@ struct BackgroundView: View {
                        startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea()
     }
+    
+    func uiKit() -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(.gradientStartColor), UIColor(.gradientStartColor)]
+        gradientLayer.locations = [0.0, 1.0]
+        return gradientLayer
+    }
 }
+
+
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {

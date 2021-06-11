@@ -13,43 +13,43 @@ class ShoppingListsViewModel: ObservableObject {
     init() {
         lists = [
             ShoppingList(name: "Rewe", elements: [
-                ShoppingListElement(done: false, text: "Tomaten 25g"),
-                ShoppingListElement(done: false, text: "Bier"),
-                ShoppingListElement(done: true, text: "Eier"),
-                ShoppingListElement(done: true, text: "Philadelphia"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
+                ShoppingListElement(checked: false, text: "Tomaten 25g"),
+                ShoppingListElement(checked: false, text: "Bier"),
+                ShoppingListElement(checked: true, text: "Eier"),
+                ShoppingListElement(checked: true, text: "Philadelphia"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
 
             ]),
             ShoppingList(name: "Lidl", elements: [
-                ShoppingListElement(done: false, text: "Tomaten 25g"),
-                ShoppingListElement(done: false, text: "Bier"),
-                ShoppingListElement(done: true, text: "Eier"),
-                ShoppingListElement(done: true, text: "Philadelphia"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "Appenzeller"),
-                ShoppingListElement(done: true, text: "So much Appenzeller"),
+                ShoppingListElement(checked: false, text: "Tomaten 25g"),
+                ShoppingListElement(checked: false, text: "Bier"),
+                ShoppingListElement(checked: true, text: "Eier"),
+                ShoppingListElement(checked: true, text: "Philadelphia"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "Appenzeller"),
+                ShoppingListElement(checked: true, text: "So much Appenzeller"),
             ]),
             ShoppingList(name: "Kaufland", elements: [
-                ShoppingListElement(done: false, text: "Eier"),
-                ShoppingListElement(done: false, text: "Bananen"),
-                ShoppingListElement(done: true, text: "Milch"),
+                ShoppingListElement(checked: false, text: "Eier"),
+                ShoppingListElement(checked: false, text: "Bananen"),
+                ShoppingListElement(checked: true, text: "Milch"),
             ]),
         ]
     }
@@ -61,6 +61,8 @@ class ShoppingListsViewModel: ObservableObject {
     func list(withID listID: ShoppingList.ID) -> ShoppingList? {
         return lists.first(where: { $0.id == listID })
     }
+    
+    // MARK:- Mutating access to lists
     /**
      Adds a `ShoppingList` to the end of `lists`
      */
@@ -81,19 +83,10 @@ class ShoppingListsViewModel: ObservableObject {
     }
     
     /**
-     Toggles done of the `ShoppingListElement`in the given `ShoppingList`
-     */
-    func toggleDone(of element: ShoppingListElement, inList list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(matchingIdOf: list),
-              let elementIndex = lists[listIndex].elements.firstIndex(matchingIdOf: element) else { return }
-        lists[listIndex].elements[elementIndex].toggleDone()
-    }
-    
-    /**
      Adds a new `ShoppingListElement` with the given name to the specified `ShoppingList`
      */
     func addElement(_ elementName: String, toList list: ShoppingList) {
-        addElement(ShoppingListElement(done: false, text: elementName), toList: list)
+        addElement(ShoppingListElement(checked: false, text: elementName), toList: list)
     }
     
     /**
@@ -102,5 +95,19 @@ class ShoppingListsViewModel: ObservableObject {
     func addElement(_ element: ShoppingListElement, toList list: ShoppingList) {
         guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
         lists[listIndex].addElement(element)
+    }
+    
+    func toggleShowCheckedElements(of list: ShoppingList) {
+        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
+        lists[listIndex].showCheckedElements.toggle()
+    }
+    
+    // MARK:- Mutating access to elements
+    /**
+     Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
+     */
+    func toggleChecked(of element: ShoppingListElement, inList list: ShoppingList) {
+        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
+        lists[listIndex].toggleCheckedOfElement(element)
     }
 }
