@@ -31,6 +31,7 @@
 		0BAE70BF2656C7DC00135D3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE70BE2656C7DC00135D3A /* Preview Assets.xcassets */; };
 		0BAE70C12656C7DC00135D3A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70C02656C7DC00135D3A /* Persistence.swift */; };
 		0BAE70C42656C7DC00135D3A /* shoppingList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70C22656C7DC00135D3A /* shoppingList.xcdatamodeld */; };
+		D45052E3267AB56F00076B88 /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D45052E2267AB56F00076B88 /* SecureAggregationClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		0BAE70C02656C7DC00135D3A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0BAE70C32656C7DC00135D3A /* shoppingList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shoppingList.xcdatamodel; sourceTree = "<group>"; };
 		0BAE70C52656C7DC00135D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D45052E0267AADE800076B88 /* SecureAggregationClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SecureAggregationClient; path = "../../secure-aggregation/SecureAggregationClient"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
+				D45052E3267AB56F00076B88 /* SecureAggregationClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +139,7 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
+				D45052E0267AADE800076B88 /* SecureAggregationClient */,
 				0B441930265A649400100106 /* DataCollection */,
 				0B44192F265A648F00100106 /* FL */,
 				0B44192E265A648100100106 /* Views */,
@@ -144,6 +148,7 @@
 				0B441941265A818500100106 /* Helper */,
 				0BAE70B62656C7D800135D3A /* shoppingList */,
 				0BAE70B52656C7D800135D3A /* Products */,
+				D45052E1267AB56F00076B88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +181,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D45052E1267AB56F00076B88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,6 +206,7 @@
 			name = shoppingList;
 			packageProductDependencies = (
 				0B4128C8266826AD00EB2CF8 /* IrregularGradient */,
+				D45052E2267AB56F00076B88 /* SecureAggregationClient */,
 			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
@@ -477,6 +490,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
 			productName = IrregularGradient;
+		};
+		D45052E2267AB56F00076B88 /* SecureAggregationClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecureAggregationClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 

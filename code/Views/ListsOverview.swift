@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import SecureAggregationClient
 
 struct ListsOverview: View {
     @StateObject private var viewModel: ShoppingListsViewModel = ShoppingListsViewModel()
-//    @StateObject private var navigationTitleBarBug: Bool = false
     
     init() {
         UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
@@ -25,6 +25,7 @@ struct ListsOverview: View {
                 }
                 AddTextFieldView(textFieldDefaultText: "", processFinishedInput: {_ in })
                     .hidden()
+                Text(SecureAggregationClient().text)
             }
             .overlay(AddTextFieldView(textFieldDefaultText: "List Name") { input in
                 viewModel.addList(ShoppingList(name: input, elements: []))
