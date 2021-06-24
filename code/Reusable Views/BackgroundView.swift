@@ -13,9 +13,9 @@ struct BackgroundView: View {
 //                              background: LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]), startPoint: .top, endPoint: .bottom),
 //                              speed: 10, shouldAnimate: $animateBackground)
 //                .ignoresSafeArea()
-        LinearGradient(gradient: Gradient(colors: [.gradientStartColor,
-                                                   .gradientEndColor]),
-                       startPoint: .top, endPoint: .bottom)
+        LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]),
+                       startPoint: .top,
+                       endPoint: .bottom)
             .ignoresSafeArea()
     }
     
@@ -26,7 +26,6 @@ struct BackgroundView: View {
         return gradientLayer
     }
 }
-
 
 
 struct BackgroundView_Previews: PreviewProvider {

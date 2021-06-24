@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-
+// TODO: set right app id
 @main
-struct shoppingListApp: App {
+struct ShoppingListApp: App {
 //    let persistenceController = PersistenceController.shared
 
     var body: some Scene {

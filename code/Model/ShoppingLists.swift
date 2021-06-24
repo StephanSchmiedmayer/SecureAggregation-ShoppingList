@@ -10,17 +10,17 @@ import Foundation
 struct ShoppingList: Identifiable, Equatable {
     let id = UUID()
     var name: String
-    var showCheckedElements: Bool = false
-    public private(set) var notCheckedElements: [ShoppingListElement]
-    public private(set) var checkedElements: [ShoppingListElement]
+    var showCheckedElements = false
+    private(set) var notCheckedElements: [ShoppingListElement]
+    private(set) var checkedElements: [ShoppingListElement]
     
     init(name: String, elements: [ShoppingListElement]) {
         self.name = name
-        notCheckedElements = elements.filter{ !$0.checked }
+        notCheckedElements = elements.filter { !$0.checked }
         checkedElements = elements.filter { $0.checked }
     }
     
-    // MARK:- mutating functions
+    // MARK: - mutating functions
     /**
      Changes the name of the `ShoppingList`
      */
@@ -69,7 +69,7 @@ struct ShoppingList: Identifiable, Equatable {
 struct ShoppingListElement: Identifiable, Equatable {
     let id = UUID()
     // TODO: delete checked from shoppingListElement to remove the possibility of undefined states
-    var checked: Bool = false
+    var checked = false
     var text: String
     
     /**

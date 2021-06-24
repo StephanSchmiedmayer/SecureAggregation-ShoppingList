@@ -8,7 +8,7 @@
 import Foundation
 
 class ShoppingListsViewModel: ObservableObject {
-    @Published public private(set) var lists: [ShoppingList]
+    @Published private(set) var lists: [ShoppingList]
     
     init() {
         lists = [
@@ -18,8 +18,7 @@ class ShoppingListsViewModel: ObservableObject {
                 ShoppingListElement(checked: true, text: "Eier"),
                 ShoppingListElement(checked: true, text: "Philadelphia"),
                 ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
-
+                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
             ]),
             ShoppingList(name: "Lidl", elements: [
                 ShoppingListElement(checked: false, text: "Tomaten 25g"),
@@ -27,7 +26,7 @@ class ShoppingListsViewModel: ObservableObject {
                 ShoppingListElement(checked: true, text: "Eier"),
                 ShoppingListElement(checked: true, text: "Philadelphia"),
                 ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
+                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
                 ShoppingListElement(checked: true, text: "Appenzeller"),
                 ShoppingListElement(checked: true, text: "Appenzeller"),
                 ShoppingListElement(checked: true, text: "Appenzeller"),
@@ -59,10 +58,10 @@ class ShoppingListsViewModel: ObservableObject {
      Returns list with the specified id
      */
     func list(withID listID: ShoppingList.ID) -> ShoppingList? {
-        return lists.first(where: { $0.id == listID })
+        lists.first(where: { $0.id == listID })
     }
     
-    // MARK:- Mutating access to lists
+    // MARK: - Mutating access to lists
     /**
      Adds a `ShoppingList` to the end of `lists`
      */
@@ -74,7 +73,7 @@ class ShoppingListsViewModel: ObservableObject {
      Removes all `ShoppingList`s with the same id
      */
     func removeList(_ list: ShoppingList) {
-        lists = lists.filter{$0.id != list.id}
+        lists = lists.filter { $0.id != list.id }
     }
     
     func renameList(_ list: ShoppingList, to newName: String) {
@@ -102,7 +101,7 @@ class ShoppingListsViewModel: ObservableObject {
         lists[listIndex].showCheckedElements.toggle()
     }
     
-    // MARK:- Mutating access to elements
+    // MARK: - Mutating access to elements
     /**
      Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
      */

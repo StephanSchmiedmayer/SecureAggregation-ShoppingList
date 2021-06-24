@@ -28,9 +28,7 @@ struct CustomDivider: View {
                 .fill(color)
                 .frame(width: width)
                 .edgesIgnoringSafeArea(.vertical)
-
         }
-        
     }
 }
 

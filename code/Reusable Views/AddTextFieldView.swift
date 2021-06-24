@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AddTextFieldView: View {
     let textFieldDefaultText: String
-    let onStartEditing: () -> ()
-    let processFinishedInput: (String) -> ()
+    let onStartEditing: () -> Void
+    let processFinishedInput: (String) -> Void
     @State private var input = ""
     // TODO: Add button zu klein
     
@@ -21,8 +21,8 @@ struct AddTextFieldView: View {
         - processFinishedInput: Function taking the String of the Textview (as inout) to process. Gets called when the users wants to add the Element. TextFieldInput gets automatically reset after calling this function.
      */
     init(textFieldDefaultText: String,
-         onStartEditing: @escaping () -> () =  {},
-         processFinishedInput: @escaping (String) -> ()) {
+         onStartEditing: @escaping () -> Void = { },
+         processFinishedInput: @escaping (String) -> Void) {
         self.textFieldDefaultText = textFieldDefaultText
         self.onStartEditing = onStartEditing
         self.processFinishedInput = processFinishedInput
@@ -50,7 +50,7 @@ struct AddTextFieldView: View {
     }
     
     func callProcessFinishedInput() {
-        guard input != "" else { return }
+        guard !input.isEmpty else { return }
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         processFinishedInput(input)
         input = ""

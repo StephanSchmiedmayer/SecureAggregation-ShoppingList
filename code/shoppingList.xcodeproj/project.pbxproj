@@ -31,6 +31,7 @@
 		0BAE70BF2656C7DC00135D3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE70BE2656C7DC00135D3A /* Preview Assets.xcassets */; };
 		0BAE70C12656C7DC00135D3A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70C02656C7DC00135D3A /* Persistence.swift */; };
 		0BAE70C42656C7DC00135D3A /* shoppingList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70C22656C7DC00135D3A /* shoppingList.xcdatamodeld */; };
+		D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D454C74E2683EAB800AB21BE /* SecureAggregationClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		0BAE70C02656C7DC00135D3A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0BAE70C32656C7DC00135D3A /* shoppingList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shoppingList.xcdatamodel; sourceTree = "<group>"; };
 		0BAE70C52656C7DC00135D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D454C7522683EE6F00AB21BE /* secure-aggregation-client */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "secure-aggregation-client"; path = "../../secure-aggregation-client"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
+				D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,20 +86,6 @@
 				0B441937265A650100100106 /* EvaluationView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		0B44192F265A648F00100106 /* FL */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FL;
-			sourceTree = "<group>";
-		};
-		0B441930265A649400100106 /* DataCollection */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataCollection;
 			sourceTree = "<group>";
 		};
 		0B441931265A64A100100106 /* Model */ = {
@@ -136,8 +125,7 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
-				0B441930265A649400100106 /* DataCollection */,
-				0B44192F265A648F00100106 /* FL */,
+				D454C7522683EE6F00AB21BE /* secure-aggregation-client */,
 				0B44192E265A648100100106 /* Views */,
 				0B441931265A64A100100106 /* Model */,
 				0BA94B35266E9A9400F308FF /* Reusable Views */,
@@ -183,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BAE70C82656C7DC00135D3A /* Build configuration list for PBXNativeTarget "shoppingList" */;
 			buildPhases = (
+				D42393F32684DEE6001E6BB8 /* ShellScript */,
 				0BAE70B02656C7D800135D3A /* Sources */,
 				0BAE70B12656C7D800135D3A /* Frameworks */,
 				0BAE70B22656C7D800135D3A /* Resources */,
@@ -194,6 +183,7 @@
 			name = shoppingList;
 			packageProductDependencies = (
 				0B4128C8266826AD00EB2CF8 /* IrregularGradient */,
+				D454C74E2683EAB800AB21BE /* SecureAggregationClient */,
 			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
@@ -224,6 +214,7 @@
 			mainGroup = 0BAE70AB2656C7D800135D3A;
 			packageReferences = (
 				0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
+				D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */,
 			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
 			projectDirPath = "";
@@ -245,6 +236,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D42393F32684DEE6001E6BB8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0BAE70B02656C7D800135D3A /* Sources */ = {
@@ -409,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.ase.shoppingList;
+				PRODUCT_BUNDLE_IDENTIFIER = stephan.com.martina.RideTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,7 +442,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.ase.shoppingList;
+				PRODUCT_BUNDLE_IDENTIFIER = stephan.com.martina.RideTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -470,6 +481,14 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secure-aggregation-client.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -477,6 +496,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
 			productName = IrregularGradient;
+		};
+		D454C74E2683EAB800AB21BE /* SecureAggregationClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */;
+			productName = SecureAggregationClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import SecureAggregationClient
 
 struct ListsOverview: View {
-    @StateObject private var viewModel: ShoppingListsViewModel = ShoppingListsViewModel()
-//    @StateObject private var navigationTitleBarBug: Bool = false
+    @StateObject private var viewModel = ShoppingListsViewModel()
     
     init() {
         UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
@@ -23,7 +23,8 @@ struct ListsOverview: View {
                         ListOverviewCard(listID: list.id)
                     }
                 }
-                AddTextFieldView(textFieldDefaultText: "", processFinishedInput: {_ in })
+                Text("\(SecureAggregationClient().text)")
+                AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
                     .hidden()
             }
             .overlay(AddTextFieldView(textFieldDefaultText: "List Name") { input in
@@ -53,7 +54,7 @@ struct ListOverviewCard: View {
                      isNavigationLink: true) {
                 if !list.notCheckedElements.isEmpty {
                     HStack {
-                        Text("\(list.notCheckedElements.compactMap{ $0.text }.joined(separator: ", "))")
+                        Text("\(list.notCheckedElements.compactMap { $0.text }.joined(separator: ", "))")
                             .multilineTextAlignment(.leading)
                             .lineLimit(1)
                             .foregroundColor(.secondaryTextColor)

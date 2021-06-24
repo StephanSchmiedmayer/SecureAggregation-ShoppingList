@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-class Constant {
+enum Constant {
     static let cornerRadius: CGFloat = 10
     
-    static let cardHeadlineSpacing:CGFloat = 10
+    static let cardHeadlineSpacing: CGFloat = 10
 }

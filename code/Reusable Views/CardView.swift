@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct CardView<Content: View, Title: View>: View {
     let title: Title
     let content: Content
@@ -34,7 +32,7 @@ struct CardView<Content: View, Title: View>: View {
         - titleAndContent: Two views: TItle of the card and content of the card
      */
     init(isNavigationLink: Bool = true,
-        @ViewBuilder titleAndContent: () -> TupleView<(Title, Content)>) {
+         @ViewBuilder titleAndContent: () -> TupleView<(Title, Content)>) {
         (self.title, self.content) = titleAndContent().value
         self.isNavigationLink = isNavigationLink
     }
@@ -73,5 +71,3 @@ struct CardView_Previews: PreviewProvider {
         .background(Color.backgroundColor.ignoresSafeArea())
     }
 }
-
-

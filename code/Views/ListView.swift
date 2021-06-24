@@ -48,7 +48,7 @@ struct ListView: View {
                         .id(-1)
                 }
             }
-            .overlay(AddTextFieldView(textFieldDefaultText: "Add new element"){ input in
+            .overlay(AddTextFieldView(textFieldDefaultText: "Add new element") { input in
                 withAnimation {
                     viewModel.addElement(input, toList: list)
                 }
@@ -56,8 +56,7 @@ struct ListView: View {
             .navigationBarItems(trailing: settings)
             .background(BackgroundView())
             .navigationTitle(list.name)
-        }
-        else {
+        } else {
             Text("List has been deleted")
         }
     }
@@ -81,7 +80,7 @@ struct ListView: View {
     }
     
     private func addElement(toList list: ShoppingList) {
-        guard addElementText != "" else { return }
+        guard !addElementText.isEmpty else { return }
         viewModel.addElement(addElementText, toList: list)
         addElementText = ""
     }

@@ -9,6 +9,6 @@ import Foundation
 
 extension Array where Element: Identifiable {
     func firstIndex(matchingIdOf element: Element) -> Int? {
-        return self.firstIndex(where: { $0.id == element.id})
+        self.firstIndex(where: { $0.id == element.id })
     }
 }
