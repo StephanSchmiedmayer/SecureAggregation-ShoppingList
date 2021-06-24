@@ -9,8 +9,12 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @StateObject private var viewModel = ShoppingListsViewModel()
+
     var body: some View {
         ListsOverview()
+            .environment(\.managedObjectContext, viewModel.container.viewContext)
+            .environmentObject(viewModel)
     }
 }
 

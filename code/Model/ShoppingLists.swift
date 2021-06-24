@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+/*
+@available(*, deprecated, message: "Not persistent, use persistent storage")
 struct ShoppingList: Identifiable, Equatable {
     let id = UUID()
     var name: String
@@ -66,6 +67,7 @@ struct ShoppingList: Identifiable, Equatable {
     }
 }
 
+@available(*, deprecated, message: "Not persistent, use persistent storage")
 struct ShoppingListElement: Identifiable, Equatable {
     let id = UUID()
     // TODO: delete checked from shoppingListElement to remove the possibility of undefined states
@@ -83,3 +85,4 @@ struct ShoppingListElement: Identifiable, Equatable {
         self.checked.toggle()
     }
 }
+*/

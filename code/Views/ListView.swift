@@ -11,32 +11,40 @@ import IrregularGradient
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
     /// ID of the list to show
-    let listID: ShoppingList.ID
+    let listID: UUID
+    
+    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+    private var lists: FetchedResults<ShoppingList>
     
     /// List corresponding to listID. Optional because otherwise when the list gets deleted while this view is shown an IndexOutOfBounds Error is thrown
     var optionalList: ShoppingList? {
-        viewModel.list(withID: listID)
+        lists.first(where: { $0.id == listID })
     }
+    
+    @State private var showDeletionAlert = false
     
     @State private var addElementText = ""
     
-    init(listID: ShoppingList.ID) {
+    init(listID: UUID) {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
         self.listID = listID
     }
     
     var body: some View {
-        if let list = optionalList {
+        if let list = optionalList,
+           let name = list.name,
+           let checkedElements = list.checkedElements?.array as? [ShoppingElement],
+           let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
             ScrollView {
                 VStack {
                     VStack(spacing: 1) {
-                        ForEach(list.notCheckedElements) { element in
-                            ListElementView(list: list, element: element)
+                        ForEach(uncheckedElements) { element in
+                            ListElementView(list: list, element: element, checked: false)
                         }
                         if list.showCheckedElements {
-                            ForEach(list.checkedElements) { element in
-                                ListElementView(list: list, element: element)
+                            ForEach(checkedElements) { element in
+                                ListElementView(list: list, element: element, checked: true)
                             }
                         }
                     }
@@ -50,14 +58,24 @@ struct ListView: View {
             }
             .overlay(AddTextFieldView(textFieldDefaultText: "Add new element") { input in
                 withAnimation {
-                    viewModel.addElement(input, toList: list)
+                    viewModel.addElement(text: input, toList: list)
                 }
             }, alignment: .bottom)
             .navigationBarItems(trailing: settings)
             .background(BackgroundView())
-            .navigationTitle(list.name)
+            .navigationTitle(name)
+            .alert(isPresented: $showDeletionAlert) {
+                Alert(title: Text("Delete List?"),
+                      primaryButton: .cancel(),
+                      secondaryButton: .destructive(Text("Delete"), action: {
+                        withAnimation {
+                            viewModel.removeList(list)
+                        }
+                      }))
+            }
         } else {
-            Text("List has been deleted")
+            Text("List has been deleted or failed to load")
+                .foregroundColor(.red)
         }
     }
     
@@ -72,20 +90,25 @@ struct ListView: View {
                     Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
                           systemImage: list.showCheckedElements ? "eye.slash" : "eye")
                 }
+                Button {
+                    showDeletionAlert = true
+                } label: {
+                    Label {
+                        Text("Delete List")
+                            .foregroundColor(.red)
+                    } icon: {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
+                    }
+                }
             }
         }
         label: {
             Image(systemName: "ellipsis.circle")
         }
     }
-    
-    private func addElement(toList list: ShoppingList) {
-        guard !addElementText.isEmpty else { return }
-        viewModel.addElement(addElementText, toList: list)
-        addElementText = ""
-    }
 }
-
+/* TODO
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { scheme in
@@ -104,4 +127,4 @@ struct ListView_Previews: PreviewProvider {
             }
         }
     }
-}
+}*/

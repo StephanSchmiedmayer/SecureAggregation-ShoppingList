@@ -6,107 +6,119 @@
 //
 
 import Foundation
+import CoreData
 
 class ShoppingListsViewModel: ObservableObject {
-    @Published private(set) var lists: [ShoppingList]
+    let container: NSPersistentContainer
     
-    init() {
-        lists = [
-            ShoppingList(name: "Rewe", elements: [
-                ShoppingListElement(checked: false, text: "Tomaten 25g"),
-                ShoppingListElement(checked: false, text: "Bier"),
-                ShoppingListElement(checked: true, text: "Eier"),
-                ShoppingListElement(checked: true, text: "Philadelphia"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
-            ]),
-            ShoppingList(name: "Lidl", elements: [
-                ShoppingListElement(checked: false, text: "Tomaten 25g"),
-                ShoppingListElement(checked: false, text: "Bier"),
-                ShoppingListElement(checked: true, text: "Eier"),
-                ShoppingListElement(checked: true, text: "Philadelphia"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "MilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilchMilch"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "Appenzeller"),
-                ShoppingListElement(checked: true, text: "So much Appenzeller"),
-            ]),
-            ShoppingList(name: "Kaufland", elements: [
-                ShoppingListElement(checked: false, text: "Eier"),
-                ShoppingListElement(checked: false, text: "Bananen"),
-                ShoppingListElement(checked: true, text: "Milch"),
-            ]),
-        ]
+    private var viewContext: NSManagedObjectContext {
+        container.viewContext
     }
     
-    // TODO: make thread-safe
-    /**
-     Returns list with the specified id
-     */
-    func list(withID listID: ShoppingList.ID) -> ShoppingList? {
-        lists.first(where: { $0.id == listID })
+    static var preview: ShoppingListsViewModel = {
+        let result = ShoppingListsViewModel(inMemory: true)
+        let viewContext = result.container.viewContext
+        let newElement = ShoppingElement(context: viewContext)
+        newElement.id = UUID()
+        newElement.text = "Test"
+        let newList = ShoppingList(context: viewContext)
+        newList.id = UUID()
+        newList.checkedElements = [newElement]
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return result
+    }()
+    
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "ShoppingListsModel")
+        if inMemory {
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        }
+        container.loadPersistentStores { _ /*storeDescription*/, error in
+            if let error = error as NSError? {
+                // TODO: Replace this implementation with code to handle the error appropriately.
+                /*
+                Typical reasons for an error here include:
+                * The parent directory does not exist, cannot be created, or disallows writing.
+                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                * The device is out of space.
+                * The store could not be migrated to the current model version.
+                Check the error message to determine what the actual problem was.
+                */
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
     }
     
-    // MARK: - Mutating access to lists
+    private func saveContext() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                // TODO: handle error
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    // MARK: - Mutating access to persistent storage
     /**
      Adds a `ShoppingList` to the end of `lists`
      */
-    func addList(_ list: ShoppingList) {
-        lists.append(list)
+    func addList(name: String) {
+        let newList = ShoppingList(context: viewContext)
+        newList.id = UUID()
+        newList.name = name
+        saveContext()
     }
     
     /**
      Removes all `ShoppingList`s with the same id
      */
     func removeList(_ list: ShoppingList) {
-        lists = lists.filter { $0.id != list.id }
+        container.viewContext.delete(list)
+        saveContext()
     }
     
     func renameList(_ list: ShoppingList, to newName: String) {
-        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
-        lists[listIndex].changeName(to: newName)
+        list.name = newName
+        saveContext()
     }
     
     /**
-     Adds a new `ShoppingListElement` with the given name to the specified `ShoppingList`
+     Adds a new `ShoppingListElement` with the given text to the specified `ShoppingList`
      */
-    func addElement(_ elementName: String, toList list: ShoppingList) {
-        addElement(ShoppingListElement(checked: false, text: elementName), toList: list)
-    }
-    
-    /**
-     Adds the `ShoppingListElement` to the specified `ShoppingList`
-     */
-    func addElement(_ element: ShoppingListElement, toList list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
-        lists[listIndex].addElement(element)
+    func addElement(text: String, toList list: ShoppingList) {
+        let newElement = ShoppingElement(context: viewContext)
+        newElement.id = UUID()
+        newElement.text = text
+        list.addToUncheckedElements(newElement)
+        saveContext()
     }
     
     func toggleShowCheckedElements(of list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
-        lists[listIndex].showCheckedElements.toggle()
+        list.showCheckedElements.toggle()
+        saveContext()
     }
     
     // MARK: - Mutating access to elements
     /**
      Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
      */
-    func toggleChecked(of element: ShoppingListElement, inList list: ShoppingList) {
-        guard let listIndex = lists.firstIndex(matchingIdOf: list) else { return }
-        lists[listIndex].toggleCheckedOfElement(element)
+    func toggleChecked(of element: ShoppingElement, inList list: ShoppingList) {
+        guard let checkedElements = list.checkedElements else { return }
+        if checkedElements.contains(element) {
+            list.removeFromCheckedElements(element)
+            list.addToUncheckedElements(element)
+        } else {
+            list.removeFromUncheckedElements(element)
+            list.addToCheckedElements(element)
+        }
+        saveContext()
     }
 }

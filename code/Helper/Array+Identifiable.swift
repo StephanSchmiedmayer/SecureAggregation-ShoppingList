@@ -11,4 +11,8 @@ extension Array where Element: Identifiable {
     func firstIndex(matchingIdOf element: Element) -> Int? {
         self.firstIndex(where: { $0.id == element.id })
     }
+    
+    func first(withMatchingId id: Element.ID) -> Element? {
+        self.first(where: { $0.id == id })
+    }
 }

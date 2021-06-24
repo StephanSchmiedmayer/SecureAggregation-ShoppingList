@@ -7,20 +7,26 @@
 
 import SwiftUI
 import SecureAggregationClient
+import CoreData
 
 struct ListsOverview: View {
-    @StateObject private var viewModel = ShoppingListsViewModel()
+    @EnvironmentObject private var viewModel: ShoppingListsViewModel
+    
+    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+    private var lists: FetchedResults<ShoppingList>
     
     init() {
-        UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
+//        UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
     }
     
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(viewModel.lists, id: \.id) { list in
-                    NavigationLink(destination: ListView(listID: list.id)) {
-                        ListOverviewCard(listID: list.id)
+                ForEach(lists, id: \.id) { list in
+                    if let listID = list.id {
+                        NavigationLink(destination: ListView(listID: listID)) {
+                            ListOverviewCard(listID: listID)
+                        }
                     }
                 }
                 Text("\(SecureAggregationClient().text)")
@@ -28,7 +34,7 @@ struct ListsOverview: View {
                     .hidden()
             }
             .overlay(AddTextFieldView(textFieldDefaultText: "List Name") { input in
-                viewModel.addList(ShoppingList(name: input, elements: []))
+                viewModel.addList(name: input)
             }, alignment: .bottom)
             .navigationTitle("Your shopping lists")
             .navigationBarTitleDisplayMode(.large)
@@ -38,35 +44,44 @@ struct ListsOverview: View {
         }
         .environmentObject(viewModel)
     }
-}
-
-struct ListOverviewCard: View {
-    @EnvironmentObject var viewModel: ShoppingListsViewModel
-    let listID: ShoppingList.ID
     
-    var optionalList: ShoppingList? {
-        viewModel.list(withID: listID)
-    }
-    
-    var body: some View {
-        if let list = optionalList {
-            CardView(title: list.name,
-                     isNavigationLink: true) {
-                if !list.notCheckedElements.isEmpty {
-                    HStack {
-                        Text("\(list.notCheckedElements.compactMap { $0.text }.joined(separator: ", "))")
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(1)
-                            .foregroundColor(.secondaryTextColor)
-                        Spacer()
+    struct ListOverviewCard: View {
+        let listID: UUID
+        
+        @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+        private var lists: FetchedResults<ShoppingList>
+        
+        var optionalList: ShoppingList? {
+            lists.first(where: { $0.id == listID })
+        }
+        
+        init(listID: UUID) {
+            self.listID = listID
+        }
+        
+        var body: some View {
+            if let list = optionalList,
+               let name = list.name,
+               let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
+                CardView(title: name,
+                         isNavigationLink: true) {
+                    if !uncheckedElements.isEmpty {
+                        HStack {
+                            Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(1)
+                                .foregroundColor(.secondaryTextColor)
+                            Spacer()
+                        }
                     }
                 }
+            } else {
+                Text("List deleted or failed to load")
             }
-        } else {
-            Text("List deleted")
         }
     }
 }
+
 
 struct ListsOverview_Previews: PreviewProvider {
     static var previews: some View {

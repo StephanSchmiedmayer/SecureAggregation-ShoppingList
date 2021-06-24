@@ -6,7 +6,15 @@
 //
 
 import SwiftUI
-// TODO: set right app id
+/* TODO :
+ - set right app id
+ - swiftlint rules überarbeiten
+ - CoreData model files generieren:
+    - construktor direkt mit members
+    - NSOrderedSet zu Array
+    - Identifiable
+ - Ordering Lists after creation different when restarting app
+ */
 @main
 struct ShoppingListApp: App {
 //    let persistenceController = PersistenceController.shared
