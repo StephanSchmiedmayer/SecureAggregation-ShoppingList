@@ -12,7 +12,7 @@ struct BlurredBackground: View {
     var blurEffectStyle: UIBlurEffect.Style {
         switch colorScheme {
         case .dark: return .dark
-        case .light: return .light
+        case .light: return .extraLight
         @unknown default:
             return .dark
         }

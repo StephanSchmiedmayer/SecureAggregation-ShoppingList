@@ -26,8 +26,7 @@ struct ListView: View {
     @State private var addElementText = ""
     
     init(listID: UUID) {
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
+        UIScrollView.appearance().backgroundColor = UIColor(Color.backgroundColor)
         self.listID = listID
     }
     
@@ -37,24 +36,22 @@ struct ListView: View {
            let checkedElements = list.checkedElements?.array as? [ShoppingElement],
            let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
             ScrollView {
-                VStack {
-                    VStack(spacing: 1) {
-                        ForEach(uncheckedElements) { element in
-                            ListElementView(list: list, element: element, checked: false)
-                        }
-                        if list.showCheckedElements {
-                            ForEach(checkedElements) { element in
-                                ListElementView(list: list, element: element, checked: true)
-                            }
+                VStack(spacing: 1) {
+                    ForEach(uncheckedElements) { element in
+                        ListElementView(list: list, element: element, checked: false)
+                    }
+                    if list.showCheckedElements {
+                        ForEach(checkedElements) { element in
+                            ListElementView(list: list, element: element, checked: true)
                         }
                     }
-                    .cornerRadius(Constant.cornerRadius)
-                    .padding(.horizontal)
-                    .padding(.top, 5)
-                    AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
-                        .hidden()
-                        .id(-1)
                 }
+                .cornerRadius(Constant.cornerRadius)
+                .padding(.horizontal)
+                .padding(.top, 5)
+                AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
+                    .hidden()
+                    .id(-1)
             }
             .overlay(AddTextFieldView(textFieldDefaultText: "Add new element") { input in
                 withAnimation {
@@ -62,7 +59,6 @@ struct ListView: View {
                 }
             }, alignment: .bottom)
             .navigationBarItems(trailing: settings)
-            .background(BackgroundView())
             .navigationTitle(name)
             .alert(isPresented: $showDeletionAlert) {
                 Alert(title: Text("Delete List?"),
@@ -108,23 +104,27 @@ struct ListView: View {
         }
     }
 }
-/* TODO
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) { scheme in
-            PreviewWrapper()
-                .preferredColorScheme(scheme)
-        }
-    }
-    
-    struct PreviewWrapper: View {
-        @StateObject var viewModel = ShoppingListsViewModel()
-        
-        var body: some View {
-            NavigationView {
-                ListView(listID: viewModel.lists[0].id)
-                    .environmentObject(viewModel)
-            }
-        }
-    }
-}*/
+
+//struct ListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(ColorScheme.allCases, id: \.self) { scheme in
+//            PreviewWrapper()
+//                .preferredColorScheme(scheme)
+//        }
+//    }
+//    
+//    struct PreviewWrapper: View {
+//        @StateObject var viewModel = ShoppingListsViewModel.preview
+//        
+//        @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+//        private var lists: FetchedResults<ShoppingList>
+//
+//        
+//        var body: some View {
+//            NavigationView {
+//                ListView(listID: viewModel.)
+//                    .environmentObject(viewModel)
+//            }
+//        }
+//    }
+//}

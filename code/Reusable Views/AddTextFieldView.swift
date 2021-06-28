@@ -59,6 +59,11 @@ struct AddTextFieldView: View {
 
 struct AddTextFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTextFieldView(textFieldDefaultText: "Test", processFinishedInput: { _ in return })
+        VStack {
+            Spacer()
+            AddTextFieldView(textFieldDefaultText: "Test", processFinishedInput: { _ in return })
+            Spacer()
+        }
+            .background(Color.backgroundColor.ignoresSafeArea())
     }
 }

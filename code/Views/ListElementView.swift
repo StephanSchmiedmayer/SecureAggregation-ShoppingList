@@ -25,7 +25,7 @@ struct ListElementView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
-            .background(BlurredBackground())
+            .background(Color.foregroundColor)
             .contentShape(Rectangle())
             .onTapGesture {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()

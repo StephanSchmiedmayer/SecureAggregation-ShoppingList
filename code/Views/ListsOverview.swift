@@ -16,10 +16,11 @@ struct ListsOverview: View {
     private var lists: FetchedResults<ShoppingList>
     
     init() {
-//        UIScrollView.appearance().layer.insertSublayer(BackgroundView().uiKit(), at: 0)
+        UIScrollView.appearance().backgroundColor = UIColor(Color.backgroundColor)
     }
     
     var body: some View {
+        // TODO: scrollview + navigation title scoll animation bug: https://stackoverflow.com/questions/64280447/scrollview-navigationview-animation-glitch-swiftui
         NavigationView {
             ScrollView {
                 ForEach(lists, id: \.id) { list in
@@ -29,7 +30,7 @@ struct ListsOverview: View {
                         }
                     }
                 }
-                Text("\(SecureAggregationClient().text)")
+                // "Spacer" for overlay:
                 AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
                     .hidden()
             }
@@ -38,14 +39,12 @@ struct ListsOverview: View {
             }, alignment: .bottom)
             .navigationTitle("Your shopping lists")
             .navigationBarTitleDisplayMode(.large)
-            // TODO: Bug: nach TextField geöffnet spackt NavigationTitle rum wenn man so den background setzt (auch ListView)
-            .background(BackgroundView())
-            .navigationViewStyle(StackNavigationViewStyle())
         }
         .environmentObject(viewModel)
     }
     
     struct ListOverviewCard: View {
+        // TODO: update with new Core-data classes
         let listID: UUID
         
         @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
@@ -76,7 +75,8 @@ struct ListsOverview: View {
                     }
                 }
             } else {
-                Text("List deleted or failed to load")
+                // Shows during deletion:
+                EmptyView()
             }
         }
     }
@@ -86,5 +86,7 @@ struct ListsOverview: View {
 struct ListsOverview_Previews: PreviewProvider {
     static var previews: some View {
         ListsOverview()
+            .environmentObject(ShoppingListsViewModel.preview)
+            .environment(\.managedObjectContext, ShoppingListsViewModel.preview.container.viewContext)
     }
 }
