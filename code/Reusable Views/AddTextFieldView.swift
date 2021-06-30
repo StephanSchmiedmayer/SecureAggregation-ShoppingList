@@ -26,23 +26,27 @@ struct AddTextFieldView: View {
         self.textFieldDefaultText = textFieldDefaultText
         self.onStartEditing = onStartEditing
         self.processFinishedInput = processFinishedInput
+        UITextView.appearance().backgroundColor = UIColor(Color.foregroundColor)
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             TextField(textFieldDefaultText,
                       text: $input,
                       onEditingChanged: { if $0 { onStartEditing() } },
                       onCommit: callProcessFinishedInput)
                 .frame(maxWidth: .infinity)
+                .padding(.leading)
+                .padding(.vertical)
+                .contentShape(Rectangle())
             Button(action: callProcessFinishedInput, label: {
                 Text("Add")
                     .bold()
                     .foregroundColor(.accentColor)
+                    .padding()
             })
             .disabled(input.isEmpty)
         }
-        .padding()
         .background(BlurredBackground())
         .cornerRadius(Constant.cornerRadius)
         .shadow(radius: 5)

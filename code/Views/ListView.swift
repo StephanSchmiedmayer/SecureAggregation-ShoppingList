@@ -26,7 +26,6 @@ struct ListView: View {
     @State private var addElementText = ""
     
     init(listID: UUID) {
-        UIScrollView.appearance().backgroundColor = UIColor(Color.backgroundColor)
         self.listID = listID
     }
     
@@ -70,8 +69,7 @@ struct ListView: View {
                       }))
             }
         } else {
-            Text("List has been deleted or failed to load")
-                .foregroundColor(.red)
+            EmptyView()
         }
     }
     

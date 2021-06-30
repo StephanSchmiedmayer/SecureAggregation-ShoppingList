@@ -24,9 +24,22 @@ struct ListsOverview: View {
         NavigationView {
             ScrollView {
                 ForEach(lists, id: \.id) { list in
-                    if let listID = list.id {
+                    if let listID = list.id,
+                       let name = list.name,
+                       let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
                         NavigationLink(destination: ListView(listID: listID)) {
-                            ListOverviewCard(listID: listID)
+                            CardView(title: name,
+                                     isNavigationLink: true) {
+                                if !uncheckedElements.isEmpty {
+                                    HStack {
+                                        Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
+                                            .multilineTextAlignment(.leading)
+                                            .lineLimit(1)
+                                            .foregroundColor(.secondaryTextColor)
+                                        Spacer()
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -43,50 +56,24 @@ struct ListsOverview: View {
         .environmentObject(viewModel)
     }
     
-    struct ListOverviewCard: View {
-        // TODO: update with new Core-data classes
-        let listID: UUID
-        
-        @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
-        private var lists: FetchedResults<ShoppingList>
-        
-        var optionalList: ShoppingList? {
-            lists.first(where: { $0.id == listID })
-        }
-        
-        init(listID: UUID) {
-            self.listID = listID
-        }
-        
-        var body: some View {
-            if let list = optionalList,
-               let name = list.name,
-               let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
-                CardView(title: name,
-                         isNavigationLink: true) {
-                    if !uncheckedElements.isEmpty {
-                        HStack {
-                            Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(1)
-                                .foregroundColor(.secondaryTextColor)
-                            Spacer()
-                        }
-                    }
-                }
-            } else {
-                // Shows during deletion:
-                EmptyView()
-            }
-        }
-    }
+//    private var settings: some View {
+//        Menu {
+//            Button {
+//
+//            }, label: {
+//                Label(
+//                    title: { Text("") },
+//                    icon: { Image(systemName: "42.circle") }
+//                )
+//            }
+//        }
 }
 
 
 struct ListsOverview_Previews: PreviewProvider {
     static var previews: some View {
         ListsOverview()
-            .environmentObject(ShoppingListsViewModel.preview)
             .environment(\.managedObjectContext, ShoppingListsViewModel.preview.container.viewContext)
+            .environmentObject(ShoppingListsViewModel.preview)
     }
 }
