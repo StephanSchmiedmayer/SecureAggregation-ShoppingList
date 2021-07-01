@@ -128,6 +128,7 @@ class ShoppingListsViewModel: ObservableObject {
         guard let checkedElements = list.checkedElements,
               let uncheckedElements = list.uncheckedElements else { return }
         if checkedElements.contains(element) && uncheckedElements.contains(element) {
+            // TODO: Bug: abgehaktes element enthaken; App neustarten; Element wird sowohl abgehakt als auch nicht abgehakt angezeigt
             print("Error")
         }
         if checkedElements.contains(element) {

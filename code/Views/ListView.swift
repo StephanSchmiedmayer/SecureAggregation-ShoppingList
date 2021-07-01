@@ -23,15 +23,6 @@ struct ListView: View {
            let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
             VStack {
                 List {
-                    Button(action: {
-                        print("-----")
-                        print("unchecked:")
-                        print((list.uncheckedElements?.array as? [ShoppingElement])!)
-                        print("checked:")
-                        print((list.checkedElements?.array as? [ShoppingElement])!)
-                    }, label: {
-                        Text("Button")
-                    })
                     ForEach(uncheckedElements) { element in
                         ListElementView(list: list, element: element, checked: false)
                     }
