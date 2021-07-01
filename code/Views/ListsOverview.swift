@@ -28,8 +28,8 @@ struct ListsOverview: View {
                 }
                 ForEach(lists, id: \.id) { list in
                     if let listID = list.id {
-                        NavigationLink(destination: ListView(list: list)) {
-                            ListOverviewCard(list: list)
+                        NavigationLink(destination: ListView(listID: listID)) {
+                            ListOverviewCard(listID: listID)
                         }
                     }
                 }
@@ -101,10 +101,23 @@ struct ListsOverview: View {
 
 /// Needed because else a change of the list would pop the ListView (idk why, maybe SwiftUI bug, maybe intentional)
 struct ListOverviewCard: View {
-    @StateObject var list: ShoppingList
+    let listID: UUID
+    
+    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+    private var lists: FetchedResults<ShoppingList>
+    
+    var optionalList: ShoppingList? {
+        lists.first(where: { $0.id == listID })
+    }
+    
+    init(listID: UUID) {
+        self.listID = listID
+    }
+
     
     var body: some View {
-        if let name = list.name,
+        if let list = optionalList,
+           let name = list.name,
            let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
             CardView(title: name,
                      isNavigationLink: true) {

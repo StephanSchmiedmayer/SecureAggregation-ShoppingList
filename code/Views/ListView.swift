@@ -11,14 +11,30 @@ import IrregularGradient
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
     
-    @StateObject var list: ShoppingList
+    /// ID of the list to show
+    let listID: UUID
     
+    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+    private var lists: FetchedResults<ShoppingList>
+    
+    /// List corresponding to listID. Optional because otherwise when the list gets deleted while this view is shown an IndexOutOfBounds Error is thrown
+    var optionalList: ShoppingList? {
+        lists.first(where: { $0.id == listID })
+    }
+    
+    init(listID: UUID) {
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+        self.listID = listID
+    }
+
     @State private var showDeletionAlert = false
     
     @State private var addElementText = ""
     
     var body: some View {
-        if let name = list.name,
+        if let list = optionalList,
+           let name = list.name,
            let checkedElements = list.checkedElements?.array as? [ShoppingElement],
            let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
             VStack {
@@ -58,23 +74,25 @@ struct ListView: View {
     
     private var settings: some View {
         Menu {
-            Button {
-                withAnimation {
-                    viewModel.toggleShowCheckedElements(of: list)
+            if let list = optionalList {
+                Button {
+                    withAnimation {
+                        viewModel.toggleShowCheckedElements(of: list)
+                    }
+                } label: {
+                    Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
+                          systemImage: list.showCheckedElements ? "eye.slash" : "eye")
                 }
-            } label: {
-                Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
-                      systemImage: list.showCheckedElements ? "eye.slash" : "eye")
-            }
-            Button {
-                showDeletionAlert = true
-            } label: {
-                Label {
-                    Text("Delete List")
-                        .foregroundColor(.red)
-                } icon: {
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
+                Button {
+                    showDeletionAlert = true
+                } label: {
+                    Label {
+                        Text("Delete List")
+                            .foregroundColor(.red)
+                    } icon: {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
+                    }
                 }
             }
         }
