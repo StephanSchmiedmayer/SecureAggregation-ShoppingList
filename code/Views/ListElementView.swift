@@ -44,19 +44,7 @@ struct ListElementView: View {
             .onTapGesture {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 withAnimation {
-                    print("-----")
-                    print("unchecked:")
-                    print((list.uncheckedElements?.array as? [ShoppingElement])!)
-                    print("checked:")
-                    print((list.checkedElements?.array as? [ShoppingElement])!)
-
                     viewModel.toggleChecked(of: element, inList: list)
-                    print("-----")
-                    print("unchecked:")
-                    print((list.uncheckedElements?.array as? [ShoppingElement])!)
-                    print("checked:")
-                    print((list.checkedElements?.array as? [ShoppingElement])!)
-
                 }
             }
             .contextMenu(ContextMenu(menuItems: {

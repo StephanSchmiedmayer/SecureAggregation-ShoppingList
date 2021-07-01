@@ -22,10 +22,6 @@ struct ListsOverview: View {
         // TODO: scrollview + navigation title scoll animation bug: https://stackoverflow.com/questions/64280447/scrollview-navigationview-animation-glitch-swiftui
         NavigationView {
             ScrollView {
-                // Needed bc of NavigationLink bug (https://developer.apple.com/forums/thread/677333):
-                NavigationLink(destination: EmptyView()) {
-                    EmptyView()
-                }
                 ForEach(lists, id: \.id) { list in
                     if let listID = list.id {
                         NavigationLink(destination: ListView(listID: listID)) {
