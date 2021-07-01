@@ -10,32 +10,28 @@ import IrregularGradient
 
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
-    /// ID of the list to show
-    let listID: UUID
     
-    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
-    private var lists: FetchedResults<ShoppingList>
-    
-    /// List corresponding to listID. Optional because otherwise when the list gets deleted while this view is shown an IndexOutOfBounds Error is thrown
-    var optionalList: ShoppingList? {
-        lists.first(where: { $0.id == listID })
-    }
+    @StateObject var list: ShoppingList
     
     @State private var showDeletionAlert = false
     
     @State private var addElementText = ""
     
-    init(listID: UUID) {
-        self.listID = listID
-    }
-    
     var body: some View {
-        if let list = optionalList,
-           let name = list.name,
+        if let name = list.name,
            let checkedElements = list.checkedElements?.array as? [ShoppingElement],
            let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
-            ScrollView {
-                VStack(spacing: 1) {
+            VStack {
+                List {
+                    Button(action: {
+                        print("-----")
+                        print("unchecked:")
+                        print((list.uncheckedElements?.array as? [ShoppingElement])!)
+                        print("checked:")
+                        print((list.checkedElements?.array as? [ShoppingElement])!)
+                    }, label: {
+                        Text("Button")
+                    })
                     ForEach(uncheckedElements) { element in
                         ListElementView(list: list, element: element, checked: false)
                     }
@@ -45,28 +41,24 @@ struct ListView: View {
                         }
                     }
                 }
-                .cornerRadius(Constant.cornerRadius)
-                .padding(.horizontal)
-                .padding(.top, 5)
-                AddTextFieldView(textFieldDefaultText: "", processFinishedInput: { _ in })
-                    .hidden()
-                    .id(-1)
-            }
-            .overlay(AddTextFieldView(textFieldDefaultText: "Add new element") { input in
-                withAnimation {
-                    viewModel.addElement(text: input, toList: list)
+                .listStyle(PlainListStyle())
+                .navigationBarItems(trailing: settings)
+                .navigationTitle(name)
+                .alert(isPresented: $showDeletionAlert) {
+                    Alert(title: Text("Delete List?"),
+                          primaryButton: .cancel(),
+                          secondaryButton: .destructive(Text("Delete"), action: {
+                            withAnimation {
+                                viewModel.removeList(list)
+                            }
+                          }))
                 }
-            }, alignment: .bottom)
-            .navigationBarItems(trailing: settings)
-            .navigationTitle(name)
-            .alert(isPresented: $showDeletionAlert) {
-                Alert(title: Text("Delete List?"),
-                      primaryButton: .cancel(),
-                      secondaryButton: .destructive(Text("Delete"), action: {
-                        withAnimation {
-                            viewModel.removeList(list)
-                        }
-                      }))
+                AddTextFieldView(textFieldDefaultText: "Add new element") { input in
+                    withAnimation {
+                        viewModel.addElement(text: input, toList: list)
+                    }
+                }
+                .background(Color.clear)
             }
         } else {
             EmptyView()
@@ -75,54 +67,51 @@ struct ListView: View {
     
     private var settings: some View {
         Menu {
-            if let list = optionalList {
-                Button {
-                    withAnimation {
-                        viewModel.toggleShowCheckedElements(of: list)
-                    }
-                } label: {
-                    Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
-                          systemImage: list.showCheckedElements ? "eye.slash" : "eye")
+            Button {
+                withAnimation {
+                    viewModel.toggleShowCheckedElements(of: list)
                 }
-                Button {
-                    showDeletionAlert = true
-                } label: {
-                    Label {
-                        Text("Delete List")
-                            .foregroundColor(.red)
-                    } icon: {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                    }
+            } label: {
+                Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
+                      systemImage: list.showCheckedElements ? "eye.slash" : "eye")
+            }
+            Button {
+                showDeletionAlert = true
+            } label: {
+                Label {
+                    Text("Delete List")
+                        .foregroundColor(.red)
+                } icon: {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
                 }
             }
         }
         label: {
             Image(systemName: "ellipsis.circle")
+                .font(Font.system(size: 20))
         }
     }
 }
 
 //struct ListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ForEach(ColorScheme.allCases, id: \.self) { scheme in
-//            PreviewWrapper()
-//                .preferredColorScheme(scheme)
-//        }
+//    static var list: ShoppingList {
+//        let result = ShoppingList()
+//        result.name = "Test"
+//        result.id = UUID()
+//        result.
 //    }
 //    
-//    struct PreviewWrapper: View {
-//        @StateObject var viewModel = ShoppingListsViewModel.preview
-//        
-//        @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
-//        private var lists: FetchedResults<ShoppingList>
-//
-//        
-//        var body: some View {
+//    static var previews: some View {
+//        ForEach(ColorScheme.allCases, id: \.self) { scheme in
+//            let preview = ShoppingListsViewModel.preview
 //            NavigationView {
-//                ListView(listID: viewModel.)
-//                    .environmentObject(viewModel)
+//                // swiftlint:disable:next force_unwrapping
+//                ListView(listID: UUID(uuidString: "8C97824E-E975-490B-B76B-FDBD4070F512")!)
+//                    .environment(\.managedObjectContext, preview.container.viewContext)
+//                    .environmentObject(preview)
 //            }
+//            .preferredColorScheme(scheme)
 //        }
 //    }
 //}

@@ -12,7 +12,6 @@ struct AddTextFieldView: View {
     let onStartEditing: () -> Void
     let processFinishedInput: (String) -> Void
     @State private var input = ""
-    // TODO: Add button zu klein
     
     /**
      - Parameters:
@@ -38,7 +37,6 @@ struct AddTextFieldView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.leading)
                 .padding(.vertical)
-                .contentShape(Rectangle())
             Button(action: callProcessFinishedInput, label: {
                 Text("Add")
                     .bold()

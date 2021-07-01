@@ -22,7 +22,7 @@ class ShoppingListsViewModel: ObservableObject {
         newElement.id = UUID()
         newElement.text = "Test"
         let newList = ShoppingList(context: viewContext)
-        newList.id = UUID()
+        newList.id = UUID(uuidString: "8C97824E-E975-490B-B76B-FDBD4070F512")
         newList.showCheckedElements = true
         newList.name = "TestList"
         newList.uncheckedElements = [newElement]
@@ -104,17 +104,32 @@ class ShoppingListsViewModel: ObservableObject {
         saveContext()
     }
     
+    func removeElement(_ element: ShoppingElement) {
+        container.viewContext.delete(element)
+        saveContext()
+    }
+    
     func toggleShowCheckedElements(of list: ShoppingList) {
         list.showCheckedElements.toggle()
         saveContext()
     }
     
     // MARK: - Mutating access to elements
+    
+    func changeTextOf(element: ShoppingElement, to newText: String) {
+        element.text = newText
+        saveContext()
+    }
+    
     /**
      Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
      */
     func toggleChecked(of element: ShoppingElement, inList list: ShoppingList) {
-        guard let checkedElements = list.checkedElements else { return }
+        guard let checkedElements = list.checkedElements,
+              let uncheckedElements = list.uncheckedElements else { return }
+        if checkedElements.contains(element) && uncheckedElements.contains(element) {
+            print("Error")
+        }
         if checkedElements.contains(element) {
             list.removeFromCheckedElements(element)
             list.addToUncheckedElements(element)

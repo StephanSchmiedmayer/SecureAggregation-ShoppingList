@@ -32,6 +32,7 @@
 		0BAE70C42656C7DC00135D3A /* shoppingList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE70C22656C7DC00135D3A /* shoppingList.xcdatamodeld */; };
 		D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D454C74E2683EAB800AB21BE /* SecureAggregationClient */; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
+		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 				D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */,
 			);
@@ -184,6 +186,7 @@
 			packageProductDependencies = (
 				0B4128C8266826AD00EB2CF8 /* IrregularGradient */,
 				D454C74E2683EAB800AB21BE /* SecureAggregationClient */,
+				D48C6BD5268D1964000AD333 /* SwiftUIX */,
 			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
@@ -215,6 +218,7 @@
 			packageReferences = (
 				0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
 				D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */,
+				D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
 			projectDirPath = "";
@@ -489,6 +493,14 @@
 				kind = branch;
 			};
 		};
+		D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -501,6 +513,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */;
 			productName = SecureAggregationClient;
+		};
+		D48C6BD5268D1964000AD333 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 
