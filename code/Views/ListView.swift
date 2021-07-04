@@ -35,8 +35,8 @@ struct ListView: View {
     var body: some View {
         if let list = optionalList,
            let name = list.name,
-           let checkedElements = list.checkedElements?.array as? [ShoppingElement],
-           let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
+           let checkedElements = list.checkElementsArray,
+           let uncheckedElements = list.uncheckElementsArray {
             VStack {
                 List {
                     ForEach(uncheckedElements) { element in

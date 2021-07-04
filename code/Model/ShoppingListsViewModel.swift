@@ -140,12 +140,13 @@ class ShoppingListsViewModel: ObservableObject {
             // TODO: Bug: abgehaktes element enthaken; App neustarten; Element wird sowohl abgehakt als auch nicht abgehakt angezeigt
             print("Error")
         }
+        let newElement = ShoppingElement(element)
         if checkedElements.contains(element) {
             list.removeFromCheckedElements(element)
-            list.addToUncheckedElements(element)
+            list.addToUncheckedElements(newElement)
         } else {
             list.removeFromUncheckedElements(element)
-            list.addToCheckedElements(element)
+            list.addToCheckedElements(newElement)
         }
         saveContext()
     }

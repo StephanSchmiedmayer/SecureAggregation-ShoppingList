@@ -25,7 +25,7 @@ struct ListsOverview: View {
                 ForEach(lists, id: \.id) { list in
                     if let listID = list.id,
                        let name = list.name,
-                       let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
+                       let uncheckedElements = list.uncheckElementsArray {
                         NavigationLink(destination: ListView(listID: listID)) {
                             VStack(spacing: 0) {
                                 HStack {
@@ -33,12 +33,14 @@ struct ListsOverview: View {
                                         .headline()
                                     Spacer()
                                 }
-                                HStack {
-                                    Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
-                                        .multilineTextAlignment(.leading)
-                                        .lineLimit(1)
-                                        .foregroundColor(.secondaryTextColor)
-                                    Spacer()
+                                if !uncheckedElements.isEmpty {
+                                    HStack {
+                                        Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
+                                            .multilineTextAlignment(.leading)
+                                            .lineLimit(1)
+                                            .foregroundColor(.secondaryTextColor)
+                                        Spacer()
+                                    }
                                 }
                             }
                         }
@@ -106,46 +108,6 @@ struct ListsOverview: View {
         showAddListSheet = false
     }
 }
-
-/// Needed because else a change of the list would pop the ListView (idk why, maybe SwiftUI bug, maybe intentional)
-struct ListOverviewCard: View {
-    let listID: UUID
-    
-    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
-    private var lists: FetchedResults<ShoppingList>
-    
-    var optionalList: ShoppingList? {
-        lists.first(where: { $0.id == listID })
-    }
-    
-    init(listID: UUID) {
-        self.listID = listID
-    }
-
-    
-    var body: some View {
-        if let list = optionalList,
-           let name = list.name,
-           let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
-            CardView(title: name,
-                     isNavigationLink: true) {
-                if !uncheckedElements.isEmpty {
-                    HStack {
-                        Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(1)
-                            .foregroundColor(.secondaryTextColor)
-                        Spacer()
-                    }
-                }
-            }
-        } else {
-            // Shows during deletion:
-            EmptyView()
-        }
-    }
-}
-
 
 struct ListsOverview_Previews: PreviewProvider {
     static var previews: some View {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ShoppingElement" representedClassName="ShoppingElement" syncable="YES" codeGenerationType="class" coreSpotlightDisplayNameExpression="ShoppingElement">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ShoppingElement" representedClassName="ShoppingElement" syncable="YES" coreSpotlightDisplayNameExpression="ShoppingElement">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="text" attributeType="String"/>
         <uniquenessConstraints>
@@ -9,7 +9,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class" coreSpotlightDisplayNameExpression="ShoppingList">
+    <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" coreSpotlightDisplayNameExpression="ShoppingList">
         <attribute name="id" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showCheckedElements" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
