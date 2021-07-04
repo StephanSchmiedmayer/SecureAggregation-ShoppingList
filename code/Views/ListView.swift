@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import IrregularGradient
+//import EyeKit
 
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
@@ -67,11 +67,16 @@ struct ListView: View {
                 }
                 .background(Color.clear)
             }
+//            .onAppear(perform: {
+//                Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { _, error in
+//                    print(error?.description ?? "no error")
+//                })
+//            })
         } else {
             EmptyView()
         }
     }
-    
+        
     private var settings: some View {
         Menu {
             if let list = optionalList {

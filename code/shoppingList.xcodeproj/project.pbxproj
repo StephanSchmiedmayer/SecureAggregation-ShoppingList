@@ -33,7 +33,23 @@
 		D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D454C74E2683EAB800AB21BE /* SecureAggregationClient */; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
+		D4BCD3B6268F1BE40080639B /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */; };
+		D4BCD3B7268F1BE40080639B /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4BCD3B8268F1BE40080639B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4BCD3B7268F1BE40080639B /* EyeKit.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0B3E467A266AA2900007BDF7 /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
@@ -62,6 +78,7 @@
 		0BAE70C52656C7DC00135D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D454C7522683EE6F00AB21BE /* secure-aggregation-client */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "secure-aggregation-client"; path = "../../secure-aggregation-client"; sourceTree = "<group>"; };
 		D461FB822684EE9300559A11 /* ShoppingListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingListModel.xcdatamodel; sourceTree = "<group>"; };
+		D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EyeKit.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BCD3B6268F1BE40080639B /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 				D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */,
@@ -128,6 +146,7 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
+				D4BCD3B3268F1B9C0080639B /* Frameworks */,
 				D454C7522683EE6F00AB21BE /* secure-aggregation-client */,
 				0B44192E265A648100100106 /* Views */,
 				0B441931265A64A100100106 /* Model */,
@@ -166,6 +185,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D4BCD3B3268F1B9C0080639B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */,
+			);
+			name = Frameworks;
+			path = shoppingList/Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,6 +205,7 @@
 				0BAE70B02656C7D800135D3A /* Sources */,
 				0BAE70B12656C7D800135D3A /* Frameworks */,
 				0BAE70B22656C7D800135D3A /* Resources */,
+				D4BCD3B8268F1BE40080639B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -424,7 +453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = stephan.com.martina.RideTracker.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.stephan.shoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,7 +475,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = stephan.com.martina.RideTracker.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.stephan.shoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -51,7 +51,6 @@ struct CardView<Content: View, Title: View>: View {
             content
         }
         .padding(.all)
-//        .background(BlurredBackground())
         .background(Color.foregroundColor)
         .cornerRadius(Constant.cornerRadius)
         .frame(maxWidth: .infinity)

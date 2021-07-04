@@ -27,6 +27,15 @@ class ShoppingListsViewModel: ObservableObject {
         newList.name = "TestList"
         newList.uncheckedElements = [newElement]
         newList.checkedElements = []
+        let secondNewElement = ShoppingElement(context: viewContext)
+        secondNewElement.id = UUID()
+        secondNewElement.text = "Testtest"
+        let secondNewList = ShoppingList(context: viewContext)
+        secondNewList.id = UUID()
+        secondNewList.showCheckedElements = true
+        secondNewList.name = "SecondTestList"
+        secondNewList.uncheckedElements = [secondNewElement]
+        secondNewList.checkedElements = []
         do {
             try viewContext.save()
         } catch {

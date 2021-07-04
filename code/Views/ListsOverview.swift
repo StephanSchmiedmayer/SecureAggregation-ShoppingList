@@ -8,6 +8,7 @@
 import SwiftUI
 import SecureAggregationClient
 import CoreData
+import SwiftUIX
 
 struct ListsOverview: View {
     @EnvironmentObject private var viewModel: ShoppingListsViewModel
@@ -17,31 +18,42 @@ struct ListsOverview: View {
     
     @State private var showAddListSheet = false
     @State private var addListName = ""
-        
+    
     var body: some View {
-        // TODO: scrollview + navigation title scoll animation bug: https://stackoverflow.com/questions/64280447/scrollview-navigationview-animation-glitch-swiftui
         NavigationView {
-            ScrollView {
+            List {
                 ForEach(lists, id: \.id) { list in
-                    if let listID = list.id {
+                    if let listID = list.id,
+                       let name = list.name,
+                       let uncheckedElements = list.uncheckedElements?.array as? [ShoppingElement] {
                         NavigationLink(destination: ListView(listID: listID)) {
-                            ListOverviewCard(listID: listID)
+                            VStack(spacing: 0) {
+                                HStack {
+                                    Text(name)
+                                        .headline()
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("\(uncheckedElements.compactMap { $0.text }.joined(separator: ", "))")
+                                        .multilineTextAlignment(.leading)
+                                        .lineLimit(1)
+                                        .foregroundColor(.secondaryTextColor)
+                                    Spacer()
+                                }
+                            }
                         }
                     }
                 }
                 if lists.isEmpty {
-                    HStack {
-                        Spacer()
-                        Text("Protip: create a list")
-                        Spacer()
-                    }
+                    Text("Protip: create a list")
                 }
             }
             .background(Color.backgroundColor.ignoresSafeArea())
             .sheet(isPresented: $showAddListSheet, content: {
                 NavigationView {
                     Form {
-                        TextField("Name", text: $addListName)
+                        CocoaTextField("Name", text: $addListName)
+                            .isFirstResponder(true)
                     }
                     // TODO: add note about already taken list name
                     .navigationTitle("Add a new List")
