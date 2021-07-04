@@ -22,11 +22,10 @@ struct ListsOverview: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(lists, id: \.id) { list in
-                    if let listID = list.id,
-                       let name = list.name,
-                       let uncheckedElements = list.uncheckElementsArray {
-                        NavigationLink(destination: ListView(listID: listID)) {
+                ForEach(lists) { list in
+                    if let name = list.name,
+                       let uncheckedElements = list.uncheckedElements {
+                        NavigationLink(destination: ListView(list: list)) {
                             VStack(spacing: 0) {
                                 HStack {
                                     Text(name)

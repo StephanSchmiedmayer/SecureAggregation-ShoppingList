@@ -10,9 +10,7 @@ import SwiftUIX
 
 struct ListElementView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
-    let list: ShoppingList
-    let element: ShoppingElement
-    let checked: Bool
+    @ObservedObject var element: ShoppingElement
     
     @State private var editing = false
     @State private var editContent = ""
@@ -20,8 +18,8 @@ struct ListElementView: View {
     var body: some View {
         if let text = element.text {
             HStack {
-                Image(systemName: checked ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(checked ? .gray : .accentColor)
+                Image(systemName: element.checked ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(element.checked ? .gray : .accentColor)
                     .font(.system(size: 20))
                 if editing {
                     CocoaTextField(text: $editContent,
@@ -36,7 +34,7 @@ struct ListElementView: View {
                     .isFirstResponder(true)
                 } else {
                     Text(text)
-                        .foregroundColor(checked ? .gray : nil)
+                        .foregroundColor(element.checked ? .gray : nil)
                     Spacer()
                 }
             }
@@ -44,7 +42,7 @@ struct ListElementView: View {
             .onTapGesture {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 withAnimation {
-                    viewModel.toggleChecked(of: element, inList: list)
+                    viewModel.toggleChecked(of: element)
                 }
             }
             .contextMenu(ContextMenu(menuItems: {
@@ -77,7 +75,7 @@ struct ListElementView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        ListElementView(list: list, element: element, checked: true)
-        ListElementView(list: list, element: element, checked: false)
+        ListElementView(element: element)
+        ListElementView(element: element)
     }
 }

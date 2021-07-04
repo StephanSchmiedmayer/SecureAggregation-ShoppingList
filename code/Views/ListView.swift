@@ -10,41 +10,31 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    /// ID of the list to show
-    let listID: UUID
+    @ObservedObject var list: ShoppingList
     
-    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
-    private var lists: FetchedResults<ShoppingList>
-    
-    /// List corresponding to listID. Optional because otherwise when the list gets deleted while this view is shown an IndexOutOfBounds Error is thrown
-    var optionalList: ShoppingList? {
-        lists.first(where: { $0.id == listID })
-    }
-    
-    init(listID: UUID) {
+    init(list: ShoppingList) {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
-        self.listID = listID
+        self.list = list
     }
-
+    
     @State private var showDeletionAlert = false
     
     @State private var addElementText = ""
     
     var body: some View {
-        if let list = optionalList,
-           let name = list.name,
-           let checkedElements = list.checkElementsArray,
-           let uncheckedElements = list.uncheckElementsArray {
+        if let name = list.name,
+           let elements = list.elements?.array as? [ShoppingElement] {
             VStack {
                 List {
-                    ForEach(uncheckedElements) { element in
-                        ListElementView(list: list, element: element, checked: false)
+                    ForEach(elements.filter { !$0.checked }) { element in
+                        ListElementView(element: element)
                     }
                     if list.showCheckedElements {
-                        ForEach(checkedElements) { element in
-                            ListElementView(list: list, element: element, checked: true)
+                        ForEach(elements.filter { $0.checked }) { element in
+                            ListElementView(element: element)
                         }
                     }
                 }
@@ -57,6 +47,9 @@ struct ListView: View {
                           secondaryButton: .destructive(Text("Delete"), action: {
                             withAnimation {
                                 viewModel.removeList(list)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    self.mode.wrappedValue.dismiss()
+                                }
                             }
                           }))
                 }
@@ -67,39 +60,38 @@ struct ListView: View {
                 }
                 .background(Color.clear)
             }
-//            .onAppear(perform: {
-//                Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { _, error in
-//                    print(error?.description ?? "no error")
-//                })
-//            })
+            //            .onAppear(perform: {
+            //                Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { _, error in
+            //                    print(error?.description ?? "no error")
+            //                })
+            //            })
         } else {
             EmptyView()
         }
     }
-        
+    
     private var settings: some View {
         Menu {
-            if let list = optionalList {
-                Button {
-                    withAnimation {
-                        viewModel.toggleShowCheckedElements(of: list)
-                    }
-                } label: {
-                    Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
-                          systemImage: list.showCheckedElements ? "eye.slash" : "eye")
+            Button {
+                withAnimation {
+                    viewModel.toggleShowCheckedElements(of: list)
                 }
-                Button {
-                    showDeletionAlert = true
-                } label: {
-                    Label {
-                        Text("Delete List")
-                            .foregroundColor(.red)
-                    } icon: {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                    }
+            } label: {
+                Label(list.showCheckedElements ? "Hide checked elements" : "Show checked elements",
+                      systemImage: list.showCheckedElements ? "eye.slash" : "eye")
+            }
+            Button {
+                showDeletionAlert = true
+            } label: {
+                Label {
+                    Text("Delete List")
+                        .foregroundColor(.red)
+                } icon: {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
                 }
             }
+            
         }
         label: {
             Image(systemName: "ellipsis.circle")

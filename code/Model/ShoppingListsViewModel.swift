@@ -18,24 +18,21 @@ class ShoppingListsViewModel: ObservableObject {
     static var preview: ShoppingListsViewModel = {
         let result = ShoppingListsViewModel(inMemory: true)
         let viewContext = result.container.viewContext
-        let newElement = ShoppingElement(context: viewContext)
-        newElement.id = UUID()
-        newElement.text = "Test"
-        let newList = ShoppingList(context: viewContext)
-        newList.id = UUID(uuidString: "8C97824E-E975-490B-B76B-FDBD4070F512")
-        newList.showCheckedElements = true
-        newList.name = "TestList"
-        newList.uncheckedElements = [newElement]
-        newList.checkedElements = []
-        let secondNewElement = ShoppingElement(context: viewContext)
-        secondNewElement.id = UUID()
-        secondNewElement.text = "Testtest"
-        let secondNewList = ShoppingList(context: viewContext)
-        secondNewList.id = UUID()
-        secondNewList.showCheckedElements = true
-        secondNewList.name = "SecondTestList"
-        secondNewList.uncheckedElements = [secondNewElement]
-        secondNewList.checkedElements = []
+        let newList = ShoppingList(context: viewContext,
+                                   // swiftlint:disable:next force_unwrapping
+                                   id: UUID(uuidString: "8C97824E-E975-490B-B76B-FDBD4070F512")!,
+                                   name: "TestList",
+                                   showCheckedElements: true,
+                                   elements: [
+                                    ShoppingElement(context: viewContext, id: UUID(), text: "Test", checked: false)
+                                   ])
+        let secondNewList = ShoppingList(context: viewContext,
+                                         id: UUID(),
+                                         name: "SecondTestList",
+                                         showCheckedElements: true,
+                                         elements: [
+                                          ShoppingElement(context: viewContext, id: UUID(), text: "Testtest", checked: false)
+                                         ])
         do {
             try viewContext.save()
         } catch {
@@ -83,9 +80,7 @@ class ShoppingListsViewModel: ObservableObject {
      Adds a `ShoppingList` to the end of `lists`
      */
     func addList(name: String) {
-        let newList = ShoppingList(context: viewContext)
-        newList.id = UUID()
-        newList.name = name
+        _ = ShoppingList(context: viewContext, name: name)
         saveContext()
     }
     
@@ -106,10 +101,7 @@ class ShoppingListsViewModel: ObservableObject {
      Adds a new `ShoppingListElement` with the given text to the specified `ShoppingList`
      */
     func addElement(text: String, toList list: ShoppingList) {
-        let newElement = ShoppingElement(context: viewContext)
-        newElement.id = UUID()
-        newElement.text = text
-        list.addToUncheckedElements(newElement)
+        list.addToElements(ShoppingElement(context: viewContext, text: text))
         saveContext()
     }
     
@@ -133,20 +125,15 @@ class ShoppingListsViewModel: ObservableObject {
     /**
      Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
      */
-    func toggleChecked(of element: ShoppingElement, inList list: ShoppingList) {
-        guard let checkedElements = list.checkedElements,
-              let uncheckedElements = list.uncheckedElements else { return }
-        if checkedElements.contains(element) && uncheckedElements.contains(element) {
-            // TODO: Bug: abgehaktes element enthaken; App neustarten; Element wird sowohl abgehakt als auch nicht abgehakt angezeigt
-            print("Error")
-        }
-        let newElement = ShoppingElement(element)
-        if checkedElements.contains(element) {
-            list.removeFromCheckedElements(element)
-            list.addToUncheckedElements(newElement)
-        } else {
-            list.removeFromUncheckedElements(element)
-            list.addToCheckedElements(newElement)
+    func toggleChecked(of element: ShoppingElement) {
+        // TODO: besser machen
+        // TODO: checkedElements oben einfügen in die List
+
+        element.checked.toggle()
+        if let list = element.list {
+            let triggerUpdate = ShoppingElement(context: viewContext, text: "")
+            list.addToElements(triggerUpdate)
+            list.removeFromElements(triggerUpdate)
         }
         saveContext()
     }
