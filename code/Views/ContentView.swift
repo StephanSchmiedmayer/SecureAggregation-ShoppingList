@@ -7,25 +7,35 @@
 
 import SwiftUI
 import CoreData
-//import EyeKit
+import EyeKit
 
 struct ContentView: View {
     @StateObject private var viewModel = ShoppingListsViewModel()
     
-//    @State private var showInformationView = !Client.shared.hasConsentedToTracking(for: DataReader.distance(refreshRate: 1))
+    @State private var showInformationView = !Client.shared.hasConsentedToTracking(for: DataReader.distance(refreshRate: 1))
 
     var body: some View {
-//        if showInformationView {
-//            Client.shared.informationView(applicationName: "ShoppingList",
-//                                          description: "",
-//                                          reader: [DataReader.distance(refreshRate: 1)],
-//                                          learnMoreURL: nil,
-//                                          completion: { showInformationView = !$0 })
-//        } else {
+        if showInformationView {
+            Client.shared.informationView(applicationName: "ShoppingList",
+                                          description: "asdf",
+                                          reader: [DataReader.distance(refreshRate: 1)],
+                                          learnMoreURL: nil,
+                                          completion: { showInformationView = !$0 })
+        } else {
             ListsOverview()
                 .environment(\.managedObjectContext, viewModel.container.viewContext)
                 .environmentObject(viewModel)
-//        }
+                .onAppear(perform: {
+                    Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, reader in
+                        switch result {
+                        case .success():
+                            break
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
+                })
+        }
     }
 }
 

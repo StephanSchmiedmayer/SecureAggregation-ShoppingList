@@ -11,4 +11,8 @@ enum Constant {
     static let cornerRadius: CGFloat = 10
     
     static let cardHeadlineSpacing: CGFloat = 10
+    
+    enum CoreData {
+        static let listName = "ShoppingList"
+    }
 }

@@ -29,13 +29,27 @@ struct ListView: View {
            let elements = list.elements?.array as? [ShoppingElement] {
             VStack {
                 List {
-                    ForEach(elements.filter { !$0.checked }) { element in
+                    let uncheckedElements = elements.filter { !$0.checked }
+                    ForEach(uncheckedElements) { element in
                         ListElementView(element: element, checked: false)
                     }
+                    .onDelete(perform: { indexSet in
+                        indexSet.forEach { index in
+                            viewModel.removeElement(uncheckedElements[index])
+                        }
+                    })
                     if list.showCheckedElements {
-                        ForEach(elements.filter { $0.checked }.reversed()) { element in
+                        let checkedElements = elements.filter { $0.checked }.reversed()
+                        ForEach(checkedElements) { element in
                             ListElementView(element: element, checked: true)
                         }
+                        .onDelete(perform: { indexSet in
+                            indexSet.forEach { index in
+                                viewModel.removeElement(
+                                    checkedElements[checkedElements.index(checkedElements.startIndex,
+                                                                          offsetBy: index)])
+                            }
+                        })
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -60,11 +74,6 @@ struct ListView: View {
                 }
                 .background(Color.clear)
             }
-            //            .onAppear(perform: {
-            //                Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { _, error in
-            //                    print(error?.description ?? "no error")
-            //                })
-            //            })
         } else {
             EmptyView()
         }
@@ -99,24 +108,24 @@ struct ListView: View {
     }
 }
 
-//struct ListView_Previews: PreviewProvider {
-//    static var list: ShoppingList {
-//        let result = ShoppingList()
-//        result.name = "Test"
-//        result.id = UUID()
-//        result.
-//    }
-//    
-//    static var previews: some View {
-//        ForEach(ColorScheme.allCases, id: \.self) { scheme in
-//            let preview = ShoppingListsViewModel.preview
-//            NavigationView {
-//                // swiftlint:disable:next force_unwrapping
-//                ListView(listID: UUID(uuidString: "8C97824E-E975-490B-B76B-FDBD4070F512")!)
-//                    .environment(\.managedObjectContext, preview.container.viewContext)
-//                    .environmentObject(preview)
-//            }
-//            .preferredColorScheme(scheme)
-//        }
-//    }
-//}
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ForEach(ColorScheme.allCases, id: \.self) { scheme in
+            let preview = ShoppingListsViewModel.preview
+            let context = preview.container.viewContext
+            NavigationView {
+                ListView(list: ShoppingList(context: context,
+                                            id: UUID(),
+                                            name: "Test",
+                                            showCheckedElements: true,
+                                            elements: [
+                                                ShoppingElement(context: context, text: "Asdf"),
+                                                ShoppingElement(context: context, text: "Testtt")
+                                            ]))
+                    .environment(\.managedObjectContext, preview.container.viewContext)
+                    .environmentObject(preview)
+            }
+            .preferredColorScheme(scheme)
+        }
+    }
+}

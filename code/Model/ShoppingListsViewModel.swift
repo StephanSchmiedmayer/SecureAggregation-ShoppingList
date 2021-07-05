@@ -75,6 +75,17 @@ class ShoppingListsViewModel: ObservableObject {
         }
     }
     
+    // MARK: - FetchRequests
+    
+    /**
+     Generic fetchrequest to get all ShoppingLists from CoreData
+     */
+    static func listsFetchRequest() -> NSFetchRequest<ShoppingList> {
+        let result = NSFetchRequest<ShoppingList>(entityName: Constant.CoreData.listName)
+        result.sortDescriptors = []
+        return result
+    }
+    
     // MARK: - Mutating access to persistent storage
     /**
      Adds a `ShoppingList` to the end of `lists`

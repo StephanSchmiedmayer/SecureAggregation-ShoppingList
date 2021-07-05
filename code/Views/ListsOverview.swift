@@ -9,11 +9,12 @@ import SwiftUI
 import SecureAggregationClient
 import CoreData
 import SwiftUIX
+import EyeKit
 
 struct ListsOverview: View {
     @EnvironmentObject private var viewModel: ShoppingListsViewModel
     
-    @FetchRequest(entity: ShoppingList.entity(), sortDescriptors: [])
+    @FetchRequest(fetchRequest: ShoppingListsViewModel.listsFetchRequest())
     private var lists: FetchedResults<ShoppingList>
     
     @State private var showAddListSheet = false
