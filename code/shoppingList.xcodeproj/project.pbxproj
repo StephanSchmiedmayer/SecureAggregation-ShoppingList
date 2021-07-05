@@ -253,7 +253,6 @@
 			mainGroup = 0BAE70AB2656C7D800135D3A;
 			packageReferences = (
 				0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
-				D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */,
 				D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
@@ -523,14 +522,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.0;
-			};
-		};
-		D454C74D2683EAB800AB21BE /* XCRemoteSwiftPackageReference "secure-aggregation-client" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secure-aggregation-client.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
