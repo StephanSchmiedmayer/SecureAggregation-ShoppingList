@@ -30,11 +30,11 @@ struct ListView: View {
             VStack {
                 List {
                     ForEach(elements.filter { !$0.checked }) { element in
-                        ListElementView(element: element, checked: true)
+                        ListElementView(element: element, checked: false)
                     }
                     if list.showCheckedElements {
-                        ForEach(elements.filter { $0.checked }) { element in
-                            ListElementView(element: element, checked: false)
+                        ForEach(elements.filter { $0.checked }.reversed()) { element in
+                            ListElementView(element: element, checked: true)
                         }
                     }
                 }
@@ -91,7 +91,6 @@ struct ListView: View {
                         .foregroundColor(.red)
                 }
             }
-            
         }
         label: {
             Image(systemName: "ellipsis.circle")

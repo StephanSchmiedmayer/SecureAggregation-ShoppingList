@@ -34,11 +34,11 @@
 		D42555E126923E53008B4D55 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */; };
 		D42555E226923E53008B4D55 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
+		D4442C1F269315930029449B /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4442C1D269315570029449B /* EyeKit.xcframework */; };
+		D4442C20269315930029449B /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4442C1D269315570029449B /* EyeKit.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D454C74E2683EAB800AB21BE /* SecureAggregationClient */; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
-		D4BCD3B6268F1BE40080639B /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */; };
-		D4BCD3B7268F1BE40080639B /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,7 +48,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4BCD3B7268F1BE40080639B /* EyeKit.xcframework in Embed Frameworks */,
+				D4442C20269315930029449B /* EyeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,9 +84,9 @@
 		D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataClass.swift"; path = "Core Data/ShoppingList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataProperties.swift"; path = "Core Data/ShoppingList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOrderedSet+Array.swift"; sourceTree = "<group>"; };
+		D4442C1D269315570029449B /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EyeKit.xcframework; path = ../../../../eyekitframework/build/EyeKit.xcframework; sourceTree = "<group>"; };
 		D454C7522683EE6F00AB21BE /* secure-aggregation-client */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "secure-aggregation-client"; path = "../../secure-aggregation-client"; sourceTree = "<group>"; };
 		D461FB822684EE9300559A11 /* ShoppingListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingListModel.xcdatamodel; sourceTree = "<group>"; };
-		D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EyeKit.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BCD3B6268F1BE40080639B /* EyeKit.xcframework in Frameworks */,
+				D4442C1F269315930029449B /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 				D454C74F2683EAB800AB21BE /* SecureAggregationClient in Frameworks */,
@@ -200,7 +200,7 @@
 		D4BCD3B3268F1B9C0080639B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4BCD3B4268F1BC40080639B /* EyeKit.xcframework */,
+				D4442C1D269315570029449B /* EyeKit.xcframework */,
 			);
 			name = Frameworks;
 			path = shoppingList/Frameworks;
