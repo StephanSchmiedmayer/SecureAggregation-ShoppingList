@@ -25,21 +25,22 @@ struct ListView: View {
     @State private var addElementText = ""
     
     var body: some View {
-        if let name = list.name,
-           let elements = list.elements?.array as? [ShoppingElement] {
+        if let name = list.name {
             VStack {
                 List {
-                    let uncheckedElements = elements.filter { !$0.checked }
-                    ForEach(uncheckedElements) { element in
-                        ListElementView(element: element, checked: false)
-                    }
-                    .onDelete(perform: { indexSet in
-                        indexSet.forEach { index in
-                            viewModel.removeElement(uncheckedElements[index])
+                    if let uncheckedElements = list.uncheckedElements {
+                        ForEach(uncheckedElements) { element in
+                            ListElementView(element: element, checked: false)
                         }
-                    })
-                    if list.showCheckedElements {
-                        let checkedElements = elements.filter { $0.checked }.reversed()
+                        
+                        .onDelete(perform: { indexSet in
+                            indexSet.forEach { index in
+                                viewModel.removeElement(uncheckedElements[index])
+                            }
+                        })
+                    }
+                    if list.showCheckedElements,
+                       let checkedElements = list.checkedElements {
                         ForEach(checkedElements) { element in
                             ListElementView(element: element, checked: true)
                         }

@@ -140,5 +140,5 @@ class ShoppingListsViewModel: ObservableObject {
         element.checked.toggle()
         saveContext()
         element.list?.objectWillChange.send() // TODO: See ShoppingElement+CoreDataProperties.swift
-    } 
+    }
 }
