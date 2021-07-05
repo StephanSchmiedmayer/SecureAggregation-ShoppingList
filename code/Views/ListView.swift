@@ -30,11 +30,11 @@ struct ListView: View {
             VStack {
                 List {
                     ForEach(elements.filter { !$0.checked }) { element in
-                        ListElementView(element: element)
+                        ListElementView(element: element, checked: true)
                     }
                     if list.showCheckedElements {
                         ForEach(elements.filter { $0.checked }) { element in
-                            ListElementView(element: element)
+                            ListElementView(element: element, checked: false)
                         }
                     }
                 }

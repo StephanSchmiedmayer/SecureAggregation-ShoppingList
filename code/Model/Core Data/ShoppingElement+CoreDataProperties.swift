@@ -15,6 +15,8 @@ extension ShoppingElement {
     public class func fetchRequest() -> NSFetchRequest<ShoppingElement> {
         NSFetchRequest<ShoppingElement>(entityName: "ShoppingElement")
     }
+    
+    // TODO: make private set with object-will-change fire on set
 
     @NSManaged public var id: UUID?
     @NSManaged public var text: String?

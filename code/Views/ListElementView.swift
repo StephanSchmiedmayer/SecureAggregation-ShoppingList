@@ -11,6 +11,8 @@ import SwiftUIX
 struct ListElementView: View {
     @EnvironmentObject var viewModel: ShoppingListsViewModel
     @ObservedObject var element: ShoppingElement
+    /// For better UI animations
+    let checked: Bool
     
     @State private var editing = false
     @State private var editContent = ""
@@ -18,8 +20,8 @@ struct ListElementView: View {
     var body: some View {
         if let text = element.text {
             HStack {
-                Image(systemName: element.checked ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(element.checked ? .gray : .accentColor)
+                Image(systemName: checked ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(checked ? .gray : .accentColor)
                     .font(.system(size: 20))
                 if editing {
                     CocoaTextField(text: $editContent,
@@ -34,7 +36,7 @@ struct ListElementView: View {
                     .isFirstResponder(true)
                 } else {
                     Text(text)
-                        .foregroundColor(element.checked ? .gray : nil)
+                        .foregroundColor(checked ? .gray : nil)
                     Spacer()
                 }
             }
@@ -75,7 +77,7 @@ struct ListElementView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        ListElementView(element: element)
-        ListElementView(element: element)
+        ListElementView(element: element, checked: true)
+        ListElementView(element: element, checked: false)
     }
 }

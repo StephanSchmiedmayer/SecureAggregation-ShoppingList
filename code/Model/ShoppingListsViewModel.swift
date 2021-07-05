@@ -126,15 +126,8 @@ class ShoppingListsViewModel: ObservableObject {
      Toggles checked of the `ShoppingListElement`in the given `ShoppingList`
      */
     func toggleChecked(of element: ShoppingElement) {
-        // TODO: besser machen
-        // TODO: checkedElements oben einfügen in die List
-
         element.checked.toggle()
-        if let list = element.list {
-            let triggerUpdate = ShoppingElement(context: viewContext, text: "")
-            list.addToElements(triggerUpdate)
-            list.removeFromElements(triggerUpdate)
-        }
         saveContext()
-    }
+        element.list?.objectWillChange.send() // TODO: See ShoppingElement+CoreDataProperties.swift
+    } 
 }
