@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SecureAggregationClient",
+        "repositoryURL": "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secure-aggregation-client.git",
+        "state": {
+          "branch": "master",
+          "revision": "67e592fd01b1d9fcebe254e5e67c36d60f6067bd",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftUIX",
         "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
         "state": {

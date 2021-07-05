@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SecureAggregationClient
 import CoreData
 import SwiftUIX
 import EyeKit
