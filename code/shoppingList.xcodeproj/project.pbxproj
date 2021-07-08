@@ -33,8 +33,8 @@
 		D42555E126923E53008B4D55 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */; };
 		D42555E226923E53008B4D55 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
-		D45ABE4E26976D7100C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */; };
-		D45ABE4F26976D7100C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
+		D45ABE53269773F300C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
 		D4A71A1A26949EB900548C49 /* EvaluationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A71A1926949EB900548C49 /* EvaluationOverview.swift */; };
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D45ABE4F26976D7100C1ECCC /* EyeKit.xcframework in Embed Frameworks */,
+				D45ABE53269773F300C1ECCC /* EyeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,7 +83,7 @@
 		D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataClass.swift"; path = "Core Data/ShoppingList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataProperties.swift"; path = "Core Data/ShoppingList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOrderedSet+Array.swift"; sourceTree = "<group>"; };
-		D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EyeKit.xcframework; path = ../../../EyeKit.xcframework; sourceTree = "<group>"; };
+		D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EyeKit.xcframework; path = Frameworks/EyeKit.xcframework; sourceTree = SOURCE_ROOT; };
 		D461FB822684EE9300559A11 /* ShoppingListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingListModel.xcdatamodel; sourceTree = "<group>"; };
 		D4A71A1926949EB900548C49 /* EvaluationOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOverview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,8 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
-				D45ABE4E26976D7100C1ECCC /* EyeKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +197,7 @@
 		D4BCD3B3268F1B9C0080639B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */,
+				D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */,
 			);
 			name = Frameworks;
 			path = shoppingList/Frameworks;
@@ -455,7 +455,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"shoppingList/Preview Content\"";
-				DEVELOPMENT_TEAM = EW47C96F97;
+				DEVELOPMENT_TEAM = 7PLLZ436SG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = shoppingList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -463,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.stephan.shoppingList;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.university.health.shoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,7 +477,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"shoppingList/Preview Content\"";
-				DEVELOPMENT_TEAM = EW47C96F97;
+				DEVELOPMENT_TEAM = 7PLLZ436SG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = shoppingList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -485,7 +485,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmiedmayer.stephan.shoppingList;
+				PRODUCT_BUNDLE_IDENTIFIER = de.tum.in.www1.university.health.shoppingList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
