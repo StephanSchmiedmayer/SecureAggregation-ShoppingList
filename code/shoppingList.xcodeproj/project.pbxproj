@@ -34,10 +34,11 @@
 		D42555E126923E53008B4D55 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */; };
 		D42555E226923E53008B4D55 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
+		D45ABE4E26976D7100C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */; };
+		D45ABE4F26976D7100C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
-		D4A71A172693366400548C49 /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A71A15269335ED00548C49 /* EyeKit.xcframework */; };
-		D4A71A182693366400548C49 /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4A71A15269335ED00548C49 /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4A71A1A26949EB900548C49 /* EvaluationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A71A1926949EB900548C49 /* EvaluationOverview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +48,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4A71A182693366400548C49 /* EyeKit.xcframework in Embed Frameworks */,
+				D45ABE4F26976D7100C1ECCC /* EyeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,8 +84,9 @@
 		D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataClass.swift"; path = "Core Data/ShoppingList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataProperties.swift"; path = "Core Data/ShoppingList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOrderedSet+Array.swift"; sourceTree = "<group>"; };
+		D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EyeKit.xcframework; path = ../../../EyeKit.xcframework; sourceTree = "<group>"; };
 		D461FB822684EE9300559A11 /* ShoppingListModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingListModel.xcdatamodel; sourceTree = "<group>"; };
-		D4A71A15269335ED00548C49 /* EyeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EyeKit.xcframework; path = ../../../../../../Downloads/EyeKit.xcframework; sourceTree = "<group>"; };
+		D4A71A1926949EB900548C49 /* EvaluationOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOverview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A71A172693366400548C49 /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
+				D45ABE4E26976D7100C1ECCC /* EyeKit.xcframework in Frameworks */,
 				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +111,7 @@
 				0B441932265A64C600100106 /* ListView.swift */,
 				0BA94B3A266EB79500F308FF /* ListElementView.swift */,
 				0B441937265A650100100106 /* EvaluationView.swift */,
+				D4A71A1926949EB900548C49 /* EvaluationOverview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +199,7 @@
 		D4BCD3B3268F1B9C0080639B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4A71A15269335ED00548C49 /* EyeKit.xcframework */,
+				D45ABE4C26976D5C00C1ECCC /* EyeKit.xcframework */,
 			);
 			name = Frameworks;
 			path = shoppingList/Frameworks;
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A71A1A26949EB900548C49 /* EvaluationOverview.swift in Sources */,
 				0BA94B37266E9AC600F308FF /* Fonts.swift in Sources */,
 				0B441943265A9F4900100106 /* Constant.swift in Sources */,
 				0B441940265A76A200100106 /* Colors.swift in Sources */,

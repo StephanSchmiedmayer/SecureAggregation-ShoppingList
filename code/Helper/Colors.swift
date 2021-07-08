@@ -23,4 +23,5 @@ extension Color {
     static let gradientEndColor = Color("GradientEnd")
     static let blobColor1 = Color("BlobColor1")
     static let blobColor2 = Color("BlobColor2")
+    static let darkRed = Color("DarkRed")
 }

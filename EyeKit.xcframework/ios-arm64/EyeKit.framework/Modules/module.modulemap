@@ -1,0 +1,11 @@
+framework module EyeKit {
+  umbrella header "EyeKit.h"
+
+  export *
+  module * { export * }
+}
+
+module EyeKit.Swift {
+    header "EyeKit-Swift.h"
+    requires objc
+}
