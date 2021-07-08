@@ -9,10 +9,6 @@ import SwiftUI
 
 struct BackgroundView: View {
     var body: some View {
-//            IrregularGradient(colors: [.blobColor1, .blobColor2],
-//                              background: LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]), startPoint: .top, endPoint: .bottom),
-//                              speed: 10, shouldAnimate: $animateBackground)
-//                .ignoresSafeArea()
         LinearGradient(gradient: Gradient(colors: [.gradientStartColor, .gradientEndColor]),
                        startPoint: .top,
                        endPoint: .bottom)

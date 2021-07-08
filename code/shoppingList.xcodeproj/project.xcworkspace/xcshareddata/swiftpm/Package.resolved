@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "IrregularGradient",
-        "repositoryURL": "https://github.com/joogps/IrregularGradient.git",
-        "state": {
-          "branch": null,
-          "revision": "0e61dddde5d42806fab3b6254217fe05a4c551aa",
-          "version": "1.1.0"
-        }
-      },
-      {
         "package": "SwiftUIX",
         "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
         "state": {

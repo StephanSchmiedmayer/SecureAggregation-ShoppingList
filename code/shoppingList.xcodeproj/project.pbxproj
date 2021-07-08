@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0B3E467B266AA2900007BDF7 /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E467A266AA2900007BDF7 /* Array+Identifiable.swift */; };
 		0B3E467F266BB7690007BDF7 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3E467E266BB7690007BDF7 /* CustomDivider.swift */; };
-		0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4128C8266826AD00EB2CF8 /* IrregularGradient */; };
 		0B4128CB26695B7D00EB2CF8 /* Array+CustomEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4128CA26695B7D00EB2CF8 /* Array+CustomEnumerated.swift */; };
 		0B441933265A64C600100106 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441932265A64C600100106 /* ListView.swift */; };
 		0B441936265A64F500100106 /* ListsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B441935265A64F500100106 /* ListsOverview.swift */; };
@@ -96,7 +95,6 @@
 			files = (
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
 				D45ABE4E26976D7100C1ECCC /* EyeKit.xcframework in Frameworks */,
-				0B4128C9266826AD00EB2CF8 /* IrregularGradient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +222,6 @@
 			);
 			name = shoppingList;
 			packageProductDependencies = (
-				0B4128C8266826AD00EB2CF8 /* IrregularGradient */,
 				D48C6BD5268D1964000AD333 /* SwiftUIX */,
 			);
 			productName = shoppingList;
@@ -255,7 +252,6 @@
 			);
 			mainGroup = 0BAE70AB2656C7D800135D3A;
 			packageReferences = (
-				0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */,
 				D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
@@ -520,14 +516,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/joogps/IrregularGradient.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
 		D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
@@ -539,11 +527,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0B4128C8266826AD00EB2CF8 /* IrregularGradient */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0B4128C7266826AD00EB2CF8 /* XCRemoteSwiftPackageReference "IrregularGradient" */;
-			productName = IrregularGradient;
-		};
 		D48C6BD5268D1964000AD333 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
