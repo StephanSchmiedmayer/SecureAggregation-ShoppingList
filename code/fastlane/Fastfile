@@ -68,7 +68,8 @@ platform :ios do
         ##########################################
 
         # Location of the info.plist in the folder structure
-        INFO_PLIST = sh("find .. -name Info.plist -type f -not -path */Pods/* -not -path *Test* | head -n 1 | cut -c 2-").strip 
+        #INFO_PLIST = sh("find .. -name Info.plist -type f -not -path */Pods/* -not -path *Test* | head -n 1 | cut -c 2-").strip 
+        INFO_PLIST = sh("find .. -name Info.plist -type f -not -path */Pods/* -not -path *Test* -not -path */Framework/* | head -n 1 | cut -c 2-").strip 
 
         # Prototyper Buildstring to identify releases
         ENV['PROTOTYPER_BUILDSTRING'] = sh("date", "+%y%m%d_%H%M").rstrip + "-build" + (ENV['bamboo_buildNumber'] ||= "") + "-" + (ENV['bamboo_repository_branch_name'] ||= "")
