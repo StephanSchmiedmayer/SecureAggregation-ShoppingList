@@ -3,7 +3,7 @@
 
 
 for_lane :bamboo do 
-    app_identifier "de.tum.in.www1.university.health.shoppingList"
+    app_identifier "de.tum.in.www1.health.enterprise.shoppingList"
 
     # Nothing to change here
     team_id "WCM2L8RG39"
