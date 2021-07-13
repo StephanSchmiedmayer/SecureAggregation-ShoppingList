@@ -34,7 +34,7 @@
 		D42555E226923E53008B4D55 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
 		D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
-		D45ABE53269773F300C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D45ABE53269773F300C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D48C6BD5268D1964000AD333 /* SwiftUIX */; };
 		D4A71A1A26949EB900548C49 /* EvaluationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A71A1926949EB900548C49 /* EvaluationOverview.swift */; };
