@@ -22,19 +22,35 @@ struct ContentView: View {
                                           learnMoreURL: nil,
                                           completion: { showInformationView = !$0 })
         } else {
-            ListsOverview()
-                .environment(\.managedObjectContext, viewModel.container.viewContext)
-                .environmentObject(viewModel)
-                .onAppear(perform: {
-                    Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
-                        switch result {
-                        case .success():
-                            break
-                        case .failure(let error):
-                            print(error)
-                        }
+            TabView {
+                ListsOverview()
+                    .environment(\.managedObjectContext, viewModel.container.viewContext)
+                    .environmentObject(viewModel)
+                    .onAppear(perform: {
+                        Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
+                            switch result {
+                            case .success():
+                                break
+                            case .failure(let error):
+                                print(error)
+                            }
+                        })
                     })
-                })
+                    .tabItem {
+                        Image(systemName: "list.bullet")
+                        Text("Lists")
+                    }
+                EvaluationOverview()
+                    .tabItem {
+                        Image(systemName: "eyes.inverse")
+                        Text("Evaluation")
+                    }
+                AggregationView()
+                    .tabItem {
+                        Image(systemName: "network")
+                        Text("Aggregation")
+                    }
+            }
         }
     }
 }
