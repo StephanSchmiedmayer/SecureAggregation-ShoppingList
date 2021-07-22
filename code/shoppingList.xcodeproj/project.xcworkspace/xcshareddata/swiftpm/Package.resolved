@@ -2,10 +2,19 @@
   "object": {
     "pins": [
       {
-        "package": "SecureAggregationCore",
-        "repositoryURL": "/Users/stephan/developer/bachelorarbeit/SecureAggregationCore",
+        "package": "SecureAggregationClient",
+        "repositoryURL": "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationclient.git",
         "state": {
-          "branch": "main",
+          "branch": "master",
+          "revision": "f4460f82347b1faf576c370629c3c0aa81f45b3c",
+          "version": null
+        }
+      },
+      {
+        "package": "SecureAggregationCore",
+        "repositoryURL": "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationcore.git",
+        "state": {
+          "branch": "master",
           "revision": "26fd0cc87a13c8733a1685fc68b1a4bf9aa7cfbb",
           "version": null
         }
