@@ -16,8 +16,11 @@ struct ContentView: View {
 
     var body: some View {
         if showInformationView {
+            let infoViewDescription = """
+                ShoppingList tracks the distance between your eyes and your phone during usage and saves the results on a server.
+                """
             Client.shared.informationView(applicationName: "ShoppingList",
-                                          description: "asdf",
+                                          description: infoViewDescription,
                                           reader: [DataReader.distance(refreshRate: 1)],
                                           learnMoreURL: nil,
                                           completion: { showInformationView = !$0 })
