@@ -22,7 +22,7 @@ struct ListElementView: View {
             HStack {
                 Image(systemName: checked ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(checked ? .gray : .accentColor)
-                    .font(.system(size: 20))
+                    .font(.system(size: config.listFontSize + 3))
                 if editing {
                     CocoaTextField(text: $editContent,
                                    onCommit: {
@@ -32,11 +32,20 @@ struct ListElementView: View {
                                         viewModel.changeTextOf(element: element, to: editContent)
                                     }
                                     editing = false
-                                   }, label: { Text("") })
-                    .isFirstResponder(true)
+                                   }, label: {
+                                    Text("")
+                                   })
+                        .font(UIFont.systemFont(ofSize: config.listFontSize))
+                        .isFirstResponder(true)
+                        .onAppear(perform: {
+                            config.updateLastAction(to: .beganEditElement)
+                        })
+                        .onDisappear(perform: {
+                            config.updateLastAction(to: .closedEditElement)
+                        })
                 } else {
                     Text(text)
-                        .foregroundColor(checked ? .gray : nil)
+                        .listElementStyle(checked: checked)
                     Spacer()
                 }
             }
@@ -45,6 +54,7 @@ struct ListElementView: View {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 withAnimation {
                     viewModel.toggleChecked(of: element)
+                    config.updateLastAction(to: element.checked ? .checkedElement : .uncheckedElement)
                 }
             }
             .contextMenu(ContextMenu(menuItems: {
@@ -54,11 +64,20 @@ struct ListElementView: View {
                 }, label: {
                     Label("Edit", systemImage: "pencil")
                 })
-            }))
+            })
+            )
         } else {
             Text("Error loading Element")
                 .foregroundColor(.red)
         }
+    }
+}
+
+fileprivate extension View {
+    func listElementStyle(checked: Bool = false) -> some View {
+        self
+            .font(Font.system(size: config.listFontSize))
+            .foregroundColor(checked ? config.listCheckedTextColor : config.listTextColor)
     }
 }
 

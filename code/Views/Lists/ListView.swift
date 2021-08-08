@@ -32,7 +32,6 @@ struct ListView: View {
                         ForEach(uncheckedElements) { element in
                             ListElementView(element: element, checked: false)
                         }
-                        
                         .onDelete(perform: { indexSet in
                             indexSet.forEach { index in
                                 viewModel.removeElement(uncheckedElements[index])
@@ -68,13 +67,15 @@ struct ListView: View {
                             }
                           }))
                 }
-                AddTextFieldView(textFieldDefaultText: "Add new element") { input in
-                    withAnimation {
-                        viewModel.addElement(text: input, toList: list)
-                    }
-                }
+                AddNewElementView(viewModel: viewModel, list: list)
                 .background(Color.clear)
             }
+            .onAppear(perform: {
+                config.updateLastAction(to: .openedList)
+            })
+            .onDisappear(perform: {
+                config.updateLastAction(to: .closedList)
+            })
         } else {
             EmptyView()
         }

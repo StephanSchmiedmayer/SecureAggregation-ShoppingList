@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// TODO: move all to AppState
 extension Color {
     // MARK: Text colors
     static let textColor = Color("TextColor")
@@ -16,12 +16,11 @@ extension Color {
     static let foregroundColor = Color("ForegroundColor")
     static let backgroundColor = Color("BackgroundColor")
     static let backgroundAccentColor = Color("BackgroundAccentColor")
-    static let listBackgroundColor = Color("ListBackgroundColor")
     
     // MARK: Gradients colors
-    static let gradientStartColor = Color("GradientStart")
-    static let gradientEndColor = Color("GradientEnd")
-    static let blobColor1 = Color("BlobColor1")
-    static let blobColor2 = Color("BlobColor2")
-    static let darkRed = Color("DarkRed")
+//    static let gradientStartColor = Color("GradientStart")
+//    static let gradientEndColor = Color("GradientEnd")
+//    static let blobColor1 = Color("BlobColor1")
+//    static let blobColor2 = Color("BlobColor2")
+//    static let darkRed = Color("DarkRed")
 }
