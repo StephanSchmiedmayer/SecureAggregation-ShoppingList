@@ -75,5 +75,6 @@ struct AggregationSwipeView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .background(Color.backgroundColor.ignoresSafeArea())
     }
 }
