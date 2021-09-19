@@ -64,4 +64,10 @@ class AggregationViewModel: ObservableObject {
                 }
         }
     }
+    
+    var localSum: SAInt {
+        values.reduce(SAInt.zero) { aggregate, newValue in
+            aggregate.add(newValue, mod: 100000) // TODO: replace with right mod
+        }
+    }
 }

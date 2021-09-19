@@ -18,7 +18,7 @@ struct AggregationView: View {
                 Section(header: Text("Create Controllers")) {
                     if viewModel.controllers.isEmpty {
                         Text("""
-                    Input a comma-separated list of values that should get aggregated.
+                    Input a comma-separated list of at least 6 values that should get aggregated.
                     Each value simulates a client.
                     """)
                     }
@@ -33,17 +33,23 @@ struct AggregationView: View {
                             Text("\(index): \(controller.description)")
                         }
                     }
+                    Section(header: Text("Local result")) {
+                        Text("Plain aggregation of the sums: \(viewModel.localSum.description)")
+                    }
                     Section(header: Text("Next step")) {
                         NavigationLink(
                             destination: AggregationSwipeView(viewModel: viewModel),
                             label: {
                                 Text("Get to the fun")
                             })
-                        Text("Start will reset the server model")
+                    }
+                    Section(header: Text("Instructions")) {
+                        Text("\"Start\" will reset the server model")
                     }
                 }
             }
             .background(Color.backgroundColor.ignoresSafeArea())
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
