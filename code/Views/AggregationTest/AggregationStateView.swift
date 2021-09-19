@@ -39,6 +39,11 @@ struct AggregationStateView: View {
                 }
             }
             Section(header: Text(controllerActionName)) {
+                Button(action: {
+                    viewModel.controllers.forEach { controllerAction($0) }
+                }, label: {
+                    Text("\(controllerActionName.lowercased()) all Controllers")
+                })
                 ForEachWithIndex(data: viewModel.controllers) { controller, index in
                     Button(action: {
                         controllerAction(controller)
