@@ -106,6 +106,7 @@
 		D4D251C026BB2D3100451905 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D4D251C226BB38AA00451905 /* View+sizeModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+sizeModifiers.swift"; sourceTree = "<group>"; };
 		D4D251C426BB411700451905 /* AddNewElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewElementView.swift; sourceTree = "<group>"; };
+		D4E76C8226F7E85B00A93D30 /* ReducedSAStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReducedSAStatus.swift; path = "../../../../Library/Developer/Xcode/DerivedData/shoppingList-dpyeanosjxnhaeavwtmdmzrtuybe/SourcePackages/checkouts/swift-log/ReducedSAStatus.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +180,7 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
+				D4E76C8226F7E85B00A93D30 /* ReducedSAStatus.swift */,
 				D48DB72F26F5FDDD008FCF2C /* secureaggregationcore */,
 				D402604526CF819C003F747B /* secureaggregationclient */,
 				D4BCD3B3268F1B9C0080639B /* Frameworks */,
