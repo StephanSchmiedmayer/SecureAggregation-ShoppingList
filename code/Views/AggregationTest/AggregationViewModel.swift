@@ -28,6 +28,8 @@ class AggregationViewModel: ObservableObject {
     
     @Published var textInput: String = ""
     
+    @Published var apiCallToJumpTo: SABasicAPI = .start
+    
     private var viewModelWillChangeCancellable: Set<AnyCancellable> = []
         
     /// Values of all controllers, in preserved order
@@ -68,6 +70,26 @@ class AggregationViewModel: ObservableObject {
     var localSum: SAInt {
         values.reduce(SAInt.zero) { aggregate, newValue in
             aggregate.add(newValue, mod: 100000) // TODO: replace with right mod
+        }
+    }
+    
+    func jumpToSelectedState() {
+        SABasicAPI.allCases.filter {
+            $0 < apiCallToJumpTo
+        }
+        .sorted()
+        .forEach { apiCall in
+            DispatchQueue.main.asyncAfter(deadline: .now() + (Double(apiCall.orderingNumber) / 2)) {
+                if apiCall.onlyCallOncePerRound {
+                    if let firstController = self.controllers.first {
+                        apiCall.call(on: firstController)
+                    }
+                } else {
+                    self.controllers.forEach { controller in
+                        apiCall.call(on: controller)
+                    }
+                }
+            }
         }
     }
 }

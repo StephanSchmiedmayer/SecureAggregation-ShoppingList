@@ -42,9 +42,16 @@ struct AggregationView: View {
                             label: {
                                 Text("Get to the fun")
                             })
+                        Picker("Shortcut target", selection: $viewModel.apiCallToJumpTo)
+                        Button(action: {
+                            viewModel.jumpToSelectedState()
+                        }, label: {
+                            Text("Skip to \(viewModel.apiCallToJumpTo.description)")
+                        })
                     }
                     Section(header: Text("Instructions")) {
-                        Text("\"Start\" will reset the server model")
+                        Text("Press enter in the textfield to reset all local controllers")
+                        Text("Don't worry, \"start\" will reset the server model")
                     }
                 }
             }
