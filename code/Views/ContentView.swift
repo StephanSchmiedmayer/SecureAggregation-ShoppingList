@@ -30,14 +30,15 @@ struct ContentView: View {
                     .environment(\.managedObjectContext, viewModel.container.viewContext)
                     .environmentObject(viewModel)
                     .onAppear(perform: {
-                        Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
-                            switch result {
-                            case .success():
-                                break
-                            case .failure(let error):
-                                print(error)
-                            }
-                        })
+                        #warning("Enable before merging")
+//                        Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
+//                            switch result {
+//                            case .success():
+//                                break
+//                            case .failure(let error):
+//                                print(error)
+//                            }
+//                        })
                     })
                     .tabItem {
                         Image(systemName: "list.bullet")

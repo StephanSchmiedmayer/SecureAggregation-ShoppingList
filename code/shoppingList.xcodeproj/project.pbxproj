@@ -33,7 +33,6 @@
 		D42555E126923E53008B4D55 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */; };
 		D42555E226923E53008B4D55 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42555DE26923E53008B4D55 /* ShoppingList+CoreDataProperties.swift */; };
 		D43F14E826D0271E00CC26F0 /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
-		D43F14EA26D0273400CC26F0 /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D43F14E926D0273400CC26F0 /* SecureAggregationClient */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
 		D452CF3A26A0C8FC003B1512 /* AggregationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452CF3926A0C8FC003B1512 /* AggregationView.swift */; };
 		D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
@@ -48,6 +47,7 @@
 		D4D251C126BB2D3100451905 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C026BB2D3100451905 /* AppState.swift */; };
 		D4D251C326BB38AA00451905 /* View+sizeModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C226BB38AA00451905 /* View+sizeModifiers.swift */; };
 		D4D251C526BB411700451905 /* AddNewElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C426BB411700451905 /* AddNewElementView.swift */; };
+		D4DD131A2704FD5000028CB9 /* secure-aggregation-client in Frameworks */ = {isa = PBXBuildFile; productRef = D4DD13192704FD5000028CB9 /* secure-aggregation-client */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,7 +88,6 @@
 		0BAE70BE2656C7DC00135D3A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0BAE70C32656C7DC00135D3A /* shoppingList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shoppingList.xcdatamodel; sourceTree = "<group>"; };
 		0BAE70C52656C7DC00135D3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D402604526CF819C003F747B /* secureaggregationclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = secureaggregationclient; path = ../../secureaggregationclient; sourceTree = "<group>"; };
 		D42555DB26923E53008B4D55 /* ShoppingElement+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingElement+CoreDataClass.swift"; path = "Core Data/ShoppingElement+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D42555DC26923E53008B4D55 /* ShoppingElement+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingElement+CoreDataProperties.swift"; path = "Core Data/ShoppingElement+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D42555DD26923E53008B4D55 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ShoppingList+CoreDataClass.swift"; path = "Core Data/ShoppingList+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -100,13 +99,11 @@
 		D4636EFF26F792FC00A5E675 /* AggregationSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationSwipeView.swift; sourceTree = "<group>"; };
 		D48DB72B26F5EFFE008FCF2C /* AggregationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationViewModel.swift; sourceTree = "<group>"; };
 		D48DB72D26F5F399008FCF2C /* ForEach+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForEach+Index.swift"; sourceTree = "<group>"; };
-		D48DB72F26F5FDDD008FCF2C /* secureaggregationcore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = secureaggregationcore; path = ../../secureaggregationcore; sourceTree = "<group>"; };
 		D48DB73126F6681C008FCF2C /* AggregationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationStateView.swift; sourceTree = "<group>"; };
 		D4A71A1926949EB900548C49 /* EvaluationOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOverview.swift; sourceTree = "<group>"; };
 		D4D251C026BB2D3100451905 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D4D251C226BB38AA00451905 /* View+sizeModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+sizeModifiers.swift"; sourceTree = "<group>"; };
 		D4D251C426BB411700451905 /* AddNewElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewElementView.swift; sourceTree = "<group>"; };
-		D4E76C8226F7E85B00A93D30 /* ReducedSAStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReducedSAStatus.swift; path = "../../../../Library/Developer/Xcode/DerivedData/shoppingList-dpyeanosjxnhaeavwtmdmzrtuybe/SourcePackages/checkouts/swift-log/ReducedSAStatus.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43F14E826D0271E00CC26F0 /* EyeKit.xcframework in Frameworks */,
-				D43F14EA26D0273400CC26F0 /* SecureAggregationClient in Frameworks */,
+				D4DD131A2704FD5000028CB9 /* secure-aggregation-client in Frameworks */,
 				D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
 			);
@@ -180,9 +177,6 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
-				D4E76C8226F7E85B00A93D30 /* ReducedSAStatus.swift */,
-				D48DB72F26F5FDDD008FCF2C /* secureaggregationcore */,
-				D402604526CF819C003F747B /* secureaggregationclient */,
 				D4BCD3B3268F1B9C0080639B /* Frameworks */,
 				0B44192E265A648100100106 /* Views */,
 				D4D251BF26BB2CD000451905 /* Tracking */,
@@ -289,7 +283,7 @@
 			name = shoppingList;
 			packageProductDependencies = (
 				D48C6BD5268D1964000AD333 /* SwiftUIX */,
-				D43F14E926D0273400CC26F0 /* SecureAggregationClient */,
+				D4DD13192704FD5000028CB9 /* secure-aggregation-client */,
 			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
@@ -320,7 +314,7 @@
 			mainGroup = 0BAE70AB2656C7D800135D3A;
 			packageReferences = (
 				D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
-				D452CF4D26A9FD4E003B1512 /* XCRemoteSwiftPackageReference "secureaggregationclient" */,
+				D4DD13182704FD5000028CB9 /* XCRemoteSwiftPackageReference "secureaggregationclient" */,
 			);
 			productRefGroup = 0BAE70B52656C7D800135D3A /* Products */;
 			projectDirPath = "";
@@ -596,14 +590,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D452CF4D26A9FD4E003B1512 /* XCRemoteSwiftPackageReference "secureaggregationclient" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationclient.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
@@ -612,17 +598,26 @@
 				minimumVersion = 0.0.7;
 			};
 		};
+		D4DD13182704FD5000028CB9 /* XCRemoteSwiftPackageReference "secureaggregationclient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationclient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D43F14E926D0273400CC26F0 /* SecureAggregationClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SecureAggregationClient;
-		};
 		D48C6BD5268D1964000AD333 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		D4DD13192704FD5000028CB9 /* secure-aggregation-client */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4DD13182704FD5000028CB9 /* XCRemoteSwiftPackageReference "secureaggregationclient" */;
+			productName = "secure-aggregation-client";
 		};
 /* End XCSwiftPackageProductDependency section */
 

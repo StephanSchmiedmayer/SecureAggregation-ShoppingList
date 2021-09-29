@@ -18,7 +18,7 @@ struct AppState {
     
     // MARK: List (Elements)
     // Visual characteristics of the actual ListElements, "Add New Element" TextField and exit-Label
-    var listFontSize: CGFloat = 30
+    var listFontSize: CGFloat = 17
     var listTextColor = Color("TextColor")
     var listCheckedTextColor = Color("SecondaryTextColor")
     var listBackgroundColor = Color("ListBackgroundColor") // TODO
