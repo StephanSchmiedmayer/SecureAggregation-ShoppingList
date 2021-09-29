@@ -35,7 +35,6 @@
 		D43F14E826D0271E00CC26F0 /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
 		D4442C1C26924F3A0029449B /* NSOrderedSet+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4442C1B26924F3A0029449B /* NSOrderedSet+Array.swift */; };
 		D452CF3A26A0C8FC003B1512 /* AggregationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452CF3926A0C8FC003B1512 /* AggregationView.swift */; };
-		D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; };
 		D45ABE53269773F300C1ECCC /* EyeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45ABE50269773EA00C1ECCC /* EyeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D461FB832684EE9300559A11 /* ShoppingListsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D461FB812684EE9300559A11 /* ShoppingListsModel.xcdatamodeld */; };
 		D4636F0026F792FC00A5E675 /* AggregationSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4636EFF26F792FC00A5E675 /* AggregationSwipeView.swift */; };
@@ -47,7 +46,7 @@
 		D4D251C126BB2D3100451905 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C026BB2D3100451905 /* AppState.swift */; };
 		D4D251C326BB38AA00451905 /* View+sizeModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C226BB38AA00451905 /* View+sizeModifiers.swift */; };
 		D4D251C526BB411700451905 /* AddNewElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D251C426BB411700451905 /* AddNewElementView.swift */; };
-		D4DD131A2704FD5000028CB9 /* secure-aggregation-client in Frameworks */ = {isa = PBXBuildFile; productRef = D4DD13192704FD5000028CB9 /* secure-aggregation-client */; };
+		D4DD131C2705037700028CB9 /* SecureAggregationClient in Frameworks */ = {isa = PBXBuildFile; productRef = D4DD131B2705037700028CB9 /* SecureAggregationClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -112,9 +111,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43F14E826D0271E00CC26F0 /* EyeKit.xcframework in Frameworks */,
-				D4DD131A2704FD5000028CB9 /* secure-aggregation-client in Frameworks */,
-				D45ABE52269773F300C1ECCC /* EyeKit.xcframework in Frameworks */,
 				D48C6BD6268D1964000AD333 /* SwiftUIX in Frameworks */,
+				D4DD131C2705037700028CB9 /* SecureAggregationClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +281,7 @@
 			name = shoppingList;
 			packageProductDependencies = (
 				D48C6BD5268D1964000AD333 /* SwiftUIX */,
-				D4DD13192704FD5000028CB9 /* secure-aggregation-client */,
+				D4DD131B2705037700028CB9 /* SecureAggregationClient */,
 			);
 			productName = shoppingList;
 			productReference = 0BAE70B42656C7D800135D3A /* shoppingList.app */;
@@ -296,7 +294,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					0BAE70B32656C7D800135D3A = {
 						CreatedOnToolsVersion = 12.5;
@@ -602,8 +600,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationclient.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -614,10 +612,10 @@
 			package = D48C6BD4268D1964000AD333 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
 		};
-		D4DD13192704FD5000028CB9 /* secure-aggregation-client */ = {
+		D4DD131B2705037700028CB9 /* SecureAggregationClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D4DD13182704FD5000028CB9 /* XCRemoteSwiftPackageReference "secureaggregationclient" */;
-			productName = "secure-aggregation-client";
+			productName = SecureAggregationClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 
