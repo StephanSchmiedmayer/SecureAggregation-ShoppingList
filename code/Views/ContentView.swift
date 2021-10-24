@@ -31,14 +31,14 @@ struct ContentView: View {
                     .environmentObject(viewModel)
                     .onAppear(perform: {
                         #warning("Enable before merging")
-//                        Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
-//                            switch result {
-//                            case .success():
-//                                break
-//                            case .failure(let error):
-//                                print(error)
-//                            }
-//                        })
+                        Client.shared.startTracking([DataReader.distance(refreshRate: 1)], completion: { result, _ in
+                            switch result {
+                            case .success():
+                                break
+                            case .failure(let error):
+                                print(error)
+                            }
+                        })
                     })
                     .tabItem {
                         Image(systemName: "list.bullet")

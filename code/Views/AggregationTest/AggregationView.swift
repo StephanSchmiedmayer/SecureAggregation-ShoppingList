@@ -18,7 +18,7 @@ struct AggregationView: View {
                 Section(header: Text("Create Controllers")) {
                     if viewModel.controllers.isEmpty {
                         Text("""
-                    Input a comma-separated list of at least 6 values that should get aggregated.
+                    Input a comma-separated list of at least 2 values that should get aggregated.
                     Each value simulates a client.
                     """)
                     }
@@ -40,7 +40,7 @@ struct AggregationView: View {
                         NavigationLink(
                             destination: AggregationSwipeView(viewModel: viewModel),
                             label: {
-                                Text("Get to the fun")
+                                Text("Manually control Secure Aggregation")
                             })
                         Picker("Shortcut target", selection: $viewModel.apiCallToJumpTo)
                         Button(action: {
@@ -51,7 +51,7 @@ struct AggregationView: View {
                     }
                     Section(header: Text("Instructions")) {
                         Text("Press enter in the textfield to reset all local controllers")
-                        Text("Don't worry, \"start\" will reset the server model")
+                        Text("\"start\" will reset the server model")
                     }
                 }
             }

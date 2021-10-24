@@ -99,8 +99,6 @@
 		D48DB72B26F5EFFE008FCF2C /* AggregationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationViewModel.swift; sourceTree = "<group>"; };
 		D48DB72D26F5F399008FCF2C /* ForEach+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForEach+Index.swift"; sourceTree = "<group>"; };
 		D48DB73126F6681C008FCF2C /* AggregationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationStateView.swift; sourceTree = "<group>"; };
-		D49CB70E27060E210079F34A /* secureaggregationcore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = secureaggregationcore; path = ../../secureaggregationcore; sourceTree = "<group>"; };
-		D49CB70F270612E80079F34A /* secureaggregationclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = secureaggregationclient; path = ../../secureaggregationclient; sourceTree = "<group>"; };
 		D4A71A1926949EB900548C49 /* EvaluationOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationOverview.swift; sourceTree = "<group>"; };
 		D4D251C026BB2D3100451905 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D4D251C226BB38AA00451905 /* View+sizeModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+sizeModifiers.swift"; sourceTree = "<group>"; };
@@ -177,8 +175,6 @@
 		0BAE70AB2656C7D800135D3A = {
 			isa = PBXGroup;
 			children = (
-				D49CB70F270612E80079F34A /* secureaggregationclient */,
-				D49CB70E27060E210079F34A /* secureaggregationcore */,
 				D4BCD3B3268F1B9C0080639B /* Frameworks */,
 				0B44192E265A648100100106 /* Views */,
 				D4D251BF26BB2CD000451905 /* Tracking */,

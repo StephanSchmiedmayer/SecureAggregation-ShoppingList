@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/swift-server/async-http-client.git",
         "state": {
           "branch": null,
-          "revision": "16ad7588b1bb1a3000524785b9217e238f0c2ea8",
-          "version": "1.6.0"
+          "revision": "1081b0b0541f535ca088acdb56f5ca5598bc6247",
+          "version": "1.6.3"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/vapor/multipart-kit.git",
         "state": {
           "branch": null,
-          "revision": "30f53439b52587b016a5e5b3dce7f50f686681be",
-          "version": "4.4.0"
+          "revision": "82f255699b1de9ba1f34dfc6b99e99aba5a1f8eb",
+          "version": "4.5.0"
         }
       },
       {
@@ -47,11 +47,11 @@
         }
       },
       {
-        "package": "ShamirSecretShare",
-        "repositoryURL": "git@github.com:StephanSchmiedmayer/SecretShare.swift.git",
+        "package": "SecureAggregationClient",
+        "repositoryURL": "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationclient.git",
         "state": {
           "branch": "master",
-          "revision": "6745b2416ad16c0ba29e121773a26296928389ac",
+          "revision": "ff75137ddd198271f4cb23f53af10faa0012dfae",
           "version": null
         }
       },
@@ -60,7 +60,7 @@
         "repositoryURL": "ssh://git@bitbucket.ase.in.tum.de:7999/mk/secureaggregationcore.git",
         "state": {
           "branch": "master",
-          "revision": "d5858f9f4368fe09feb3ae79a2655ced61dbf2f1",
+          "revision": "a2d7a0a27cc088fc5fb3512e4910ef22a5ff87b2",
           "version": null
         }
       },
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/apple/swift-crypto.git",
         "state": {
           "branch": null,
-          "revision": "3bea268b223651c4ab7b7b9ad62ef9b2d4143eb6",
-          "version": "1.1.6"
+          "revision": "127d3745c37b5705e4bc8d16c7951c48dcc3332c",
+          "version": "2.0.0"
         }
       },
       {
@@ -155,12 +155,21 @@
         }
       },
       {
+        "package": "SwiftySSS",
+        "repositoryURL": "git@github.com:StephanSchmiedmayer/SwiftySSS.git",
+        "state": {
+          "branch": "main",
+          "revision": "894e63dd7feab09ba403adc38471b91c0ce9d618",
+          "version": null
+        }
+      },
+      {
         "package": "vapor",
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "f9f68e5f417ef1de56222a80079a72605fbfde8d",
-          "version": "4.48.8"
+          "revision": "27119271502bf266be293be5325f0fb72435e8fd",
+          "version": "4.49.2"
         }
       },
       {

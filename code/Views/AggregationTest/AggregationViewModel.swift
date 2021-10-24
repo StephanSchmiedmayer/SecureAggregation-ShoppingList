@@ -59,7 +59,7 @@ class AggregationViewModel: ObservableObject {
                     Int(substring)
                 }
                 .map {
-                    BasicSecureAggregationController(value: SAInt($0, mod: 100), serverBaseURL: serverBaseURL)
+                    BasicSecureAggregationController(value: SAInt($0, mod: 1000), serverBaseURL: serverBaseURL) // TODO: replace with right mod
                 }
                 .forEach { controller in
                     controllers.append(controller)
@@ -69,7 +69,7 @@ class AggregationViewModel: ObservableObject {
     
     var localSum: SAInt {
         values.reduce(SAInt.zero) { aggregate, newValue in
-            aggregate.add(newValue, mod: 100) // TODO: replace with right mod
+            aggregate.add(newValue, mod: 1000) // TODO: replace with right mod
         }
     }
     
